@@ -1,0 +1,48 @@
+@import 'abstract/variables';
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+.page {
+  height: 100vh;
+}
+#root {
+  height: 100%;
+  overflow: auto;
+}
+body {
+  overflow: auto;
+  background-color: $color-white;
+}
+body,
+p,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  display: block;
+  border: none;
+  width: 100%;
+  background: none;
+}

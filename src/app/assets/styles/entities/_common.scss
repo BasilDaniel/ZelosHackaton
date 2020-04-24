@@ -1,0 +1,39 @@
+@import 'abstract/variables';
+
+h1 {
+  font-family: 'Poppins Regular';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 26px;
+  color: $color-mine-shaft;
+  line-height: 120%;
+  padding: 10px 0;
+}
+h2 {
+  padding: $spacer-250 0 $spacer-100;
+}
+
+p {
+  font-family: 'Inter Light';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  color: $color-gray;
+  padding: 10px 0;
+}
+
+main {
+  max-width: $page-width;
+  margin: 0 auto;
+}
+
+.ant-form {
+  padding: $spacer-225;
+  max-width: $page-width;
+  margin: 0 auto;
+}
+.form-input {
+  textarea {
+    background-color: $color-athens-gray;
+  }
+}

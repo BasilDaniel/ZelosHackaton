@@ -1,0 +1,14 @@
+@import 'abstract/variables';
+
+.not-found {
+  padding: 40px 10px 10px 10px;
+  & p {
+    text-align: center;
+    font-family: 'Poppins Regular';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 120%;
+    color: $color-mine-shaft;
+  }
+}

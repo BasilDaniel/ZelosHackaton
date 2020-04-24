@@ -1,0 +1,40 @@
+@import 'abstract/variables';
+
+.login {
+  max-width: $form-width;
+  margin-left: auto;
+  margin-right: auto;
+  p {
+    margin: 8px 0px 22px 0px;
+    font-family: 'Inter Regular';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: $color-silver;
+    text-align: center;
+    &:nth-child(3) {
+      font-size: 16px;
+      text-align: left;
+      font-family: 'Inter Light';
+      color: $color-gray;
+      margin-bottom: 0;
+    }
+    &:nth-child(12) {
+      padding: 0px;
+    }
+    &:nth-child(13) {
+      font-size: 12px;
+      text-align: left;
+      padding: 0px;
+    }
+  }
+  a {
+    color: $color-bilbao;
+  }
+  .login-button {
+    margin-top: 28px;
+    .button {
+      margin: 0 auto;
+    }
+  }
+}

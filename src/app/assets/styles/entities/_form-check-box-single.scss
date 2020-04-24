@@ -1,0 +1,98 @@
+@import 'abstract/variables';
+
+.form-checkbox-single {
+  &.form-checkbox-single {
+    &_badges {
+      &.ant-checkbox-wrapper {
+        border: 1px solid $color-silver;
+        margin: 0 $spacer-125;
+        height: 40px;
+        line-height: 100%;
+        border-radius: 100px;
+        border: 1px solid $color-rice-flower !important;
+        background-color: $color-rice-flower;
+        color: $color-bilbao;
+        box-shadow: none !important;
+        outline: none !important;
+        > span:nth-child(2) {
+          line-height: $spacer-500;
+        }
+        &:not(:first-child)::before {
+          content: none;
+        }
+        &:hover {
+          border: 1px solid green;
+        }
+      }
+      .ant-checkbox-wrapper:first-child {
+        margin: 0;
+      }
+      .ant-checkbox-wrapper:last-child {
+        margin: 0;
+      }
+      .ant-checkbox-wrapper-checked {
+        border: 1px solid $color-bilbao !important;
+        background-color: $color-bilbao;
+        color: $color-white !important;
+        box-shadow: none !important;
+        outline: none !important;
+      }
+    }
+    &_box {
+      &.ant-checkbox-wrapper {
+        position: relative;
+        display: block;
+        border: 1px solid #d9d9d9;
+        margin: $spacer-125 0;
+        height: 36px;
+        width: 90vw;
+        line-height: 100%;
+        border-radius: 100px;
+        border: none !important;
+        color: $color-bilbao;
+        box-shadow: none !important;
+        outline: none !important;
+        &:not(:first-child)::before {
+          content: none;
+        }
+        & .ant-checkbox {
+          border: 1px solid $color-bilbao;
+          border-radius: 20%;
+          display: block;
+          width: 20px;
+          height: 20px;
+          & .ant-checkbox-inner {
+            display: none;
+          }
+          &.ant-checkbox-checked {
+            & .ant-checkbox-inner {
+              display: block;
+              position: absolute;
+              top: 4px;
+              left: 4px;
+              display: block;
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background-color: $color-white;
+              border: none;
+              &::after {
+                border-color: $color-bilbao;
+              }
+            }
+            &::after {
+              content: none;
+            }
+          }
+        }
+        & > span:nth-child(2) {
+          position: absolute;
+          left: 27px;
+          top: 0px;
+          color: $color-mine-shaft;
+          line-height: 20px;
+        }
+      }
+    }
+  }
+}

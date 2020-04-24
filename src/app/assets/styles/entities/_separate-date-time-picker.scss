@@ -1,0 +1,28 @@
+@import 'abstract/variables';
+
+.separate-date-time-picker {
+  display: flex;
+  justify-content: space-between;
+  & > span:nth-child(1) {
+    width: 56%;
+  }
+  & > span:nth-child(2) {
+    width: 42%;
+    input {
+      height: $form-item-height;
+    }
+  }
+
+  .ant-time-picker-panel-select {
+    width: 50%;
+    ul {
+      width: 200px;
+    }
+  }
+}
+.ant-calendar-input-wrap {
+  display: none;
+}
+.ant-time-picker-panel-input-wrap {
+  display: none;
+}

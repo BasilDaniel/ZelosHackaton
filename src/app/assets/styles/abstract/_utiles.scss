@@ -1,0 +1,60 @@
+@import '../variables';
+
+@mixin spacerBuilder($property) {
+  &-0 {
+    #{$property}: $spacer0;
+  }
+  &-025 {
+    #{$property}: $spacer025;
+  }
+  &-050 {
+    #{$property}: $spacer050;
+  }
+  &-100 {
+    #{$property}: $space100;
+  }
+  &-125 {
+    #{$property}: $spacer125;
+  }
+  &-150 {
+    #{$property}: $spacer150;
+  }
+  &-175 {
+    #{$property}: $spacer175;
+  }
+  &-200 {
+    #{$property}: $spacer200;
+  }
+}
+
+.mt {
+  @include spacerBuilder(margin-top);
+}
+
+.mr {
+  @include spacerBuilder(margin-right);
+}
+
+.mb {
+  @include spacerBuilder(margin-bottom);
+}
+
+.ml {
+  @include spacerBuilder(margin-left);
+}
+
+.pt {
+  @include spacerBuilder(padding-top);
+}
+
+.pr {
+  @include spacerBuilder(padding-right);
+}
+
+.pl {
+  @include spacerBuilder(padding-left);
+}
+
+.pb {
+  @include spacerBuilder(padding-bottom);
+}
