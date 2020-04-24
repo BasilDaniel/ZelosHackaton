@@ -1,5 +1,5 @@
-@import '../variables';
-
+@import './variables';
+ƒ
 @mixin spacerBuilder($property) {
   &-0 {
     #{$property}: $spacer0;
@@ -24,6 +24,12 @@
   }
   &-200 {
     #{$property}: $spacer200;
+  }
+  &-225 {
+    #{$property}: $spacer225;
+  }
+  &-250 {
+    #{$property}: $spacer250;
   }
 }
 
