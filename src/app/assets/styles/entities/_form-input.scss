@@ -1,8 +1,6 @@
 @import 'abstract/variables';
 
 .form-input {
-  padding: 10px 0;
-  margin-bottom: $spacer;
   label {
     font-style: normal;
     font-weight: 500;
@@ -11,10 +9,7 @@
     color: grey;
   }
   input {
-    height: $form-item-height;
     line-height: 100%;
-    border-radius: 8px;
-    background-color: greyy;
   }
   .ant-form-explain {
     position: absolute;
@@ -26,4 +21,7 @@
   &_hidden {
     display: none;
   }
+}
+.form-input.ant-form-item {
+  margin-bottom: 10px;
 }
