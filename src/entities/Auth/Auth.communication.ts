@@ -51,7 +51,7 @@ const registrationApiProvider = [
 ];
 
 const branches = [
-  new Branch('model', modelApiProvider, new StoreBranch<ITokenModel, any>(null, null, null, true)),
+  new Branch('model', modelApiProvider, new StoreBranch<ITokenModel, any>(null, null, null, false)),
   new Branch('registration', registrationApiProvider)
 ];
 

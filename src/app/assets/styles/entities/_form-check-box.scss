@@ -9,9 +9,9 @@
         height: 40px;
         line-height: 100%;
         border-radius: 100px;
-        border: 1px solid $color-rice-flower !important;
-        background-color: $color-rice-flower;
-        color: $color-bilbao;
+        border: 1px solid grey !important;
+        background-color: grey;
+        color: green;
         box-shadow: none !important;
         outline: none !important;
         > span:nth-child(2) {
@@ -31,8 +31,8 @@
         margin: 0;
       }
       .ant-checkbox-wrapper-checked {
-        border: 1px solid $color-bilbao !important;
-        background-color: $color-bilbao;
+        border: 1px solid green !important;
+        background-color: green;
         color: $color-white !important;
         box-shadow: none !important;
         outline: none !important;
@@ -49,14 +49,14 @@
         line-height: 100%;
         border-radius: 100px;
         border: none !important;
-        color: $color-bilbao;
+        color: green;
         box-shadow: none !important;
         outline: none !important;
         &:not(:first-child)::before {
           content: none;
         }
         & .ant-checkbox {
-          border: 1px solid $color-bilbao;
+          border: 1px solid green;
           border-radius: 20%;
           display: block;
           width: 20px;
@@ -78,7 +78,7 @@
               background-color: $color-white;
               border: none;
               &::after {
-                border-color: $color-bilbao;
+                border-color: green;
               }
             }
             &::after {
@@ -90,7 +90,7 @@
           position: absolute;
           left: 27px;
           top: 0px;
-          color: $color-mine-shaft;
+          color: black;
           line-height: 20px;
         }
       }

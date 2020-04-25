@@ -10,13 +10,13 @@
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
-    color: $color-silver;
+    color: grey;
     text-align: center;
     &:nth-child(3) {
       font-size: 16px;
       text-align: left;
       font-family: 'Inter Light';
-      color: $color-gray;
+      color: grey;
       margin-bottom: 0;
     }
     &:nth-child(12) {
@@ -29,7 +29,7 @@
     }
   }
   a {
-    color: $color-bilbao;
+    color: green;
   }
   .login-button {
     margin-top: 28px;

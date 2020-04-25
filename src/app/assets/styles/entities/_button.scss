@@ -11,8 +11,8 @@
   font-size: 18px;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding-left: $spacer-125;
-  padding-right: $spacer-125;
+  padding-left: 10px;
+  padding-right: 10px;
   // TODO delete margin and fix all affected places
 
   &:hover {
@@ -25,11 +25,11 @@
     }
   }
   &__success {
-    background-color: $color-bilbao;
+    background-color: green;
   }
   &__success-invert {
-    border: 1px solid $color-bilbao;
-    color: $color-bilbao;
+    border: 1px solid green;
+    color: green;
   }
   &__danger-invert {
     border: 1px solid $color-error;
@@ -59,7 +59,7 @@
   &__back {
     height: 30px;
     width: 47px;
-    border: 1px solid $color-bilbao;
+    border: 1px solid green;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: 11px center;

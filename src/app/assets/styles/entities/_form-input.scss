@@ -1,28 +1,28 @@
 @import 'abstract/variables';
 
 .form-input {
-  padding: $spacer-125 0;
+  padding: 10px 0;
   margin-bottom: $spacer;
   label {
     font-family: 'Inter Regular';
     font-style: normal;
     font-weight: 500;
-    font-size: $font-sizer-200;
+    font-size: 16px;
     line-height: 100%;
-    color: $color-dove-gray;
+    color: grey;
   }
   input {
     height: $form-item-height;
     line-height: 100%;
-    border-radius: $spacer-100;
-    background-color: $color-athens-gray;
+    border-radius: 8px;
+    background-color: greyy;
   }
   .ant-form-explain {
     position: absolute;
-    font-size: $font-sizer-150;
-    line-height: $font-sizer-150;
-    padding-top: $spacer-100;
-    padding-bottom: $spacer-100;
+    font-size: 12px;
+    line-height: 12px;
+    padding-top: 8px;
+    padding-bottom: 8px;
   }
   &_hidden {
     display: none;

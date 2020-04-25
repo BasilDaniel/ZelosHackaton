@@ -7,7 +7,7 @@
     align-items: center;
   }
   &_top {
-    margin-top: $spacer-500;
+    margin-top: 40px;
     display: flex;
     align-items: flex-start;
   }
@@ -27,7 +27,7 @@
     position: relative;
     margin: 0 auto;
     .ant-spin-dot-item {
-      background-color: $color-bilbao;
+      background-color: green;
     }
   }
 }
