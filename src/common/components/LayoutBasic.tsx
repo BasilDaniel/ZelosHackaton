@@ -10,12 +10,12 @@ export class LayoutBasic extends React.Component<IComponentProps> {
   render() {
     const { children, imageSrc } = this.props;
     return (
-      <Row type="flex" justify="center" align="middle">
+      <Row type="flex" justify="center">
         <Col md={12} xs={24}>
           <img src={imageSrc ? imageSrc : commonImage} alt="About US" width="100%" />
         </Col>
         <Col md={12} xs={24}>
-          <div>{children}</div>
+          {children}
         </Col>
       </Row>
     );

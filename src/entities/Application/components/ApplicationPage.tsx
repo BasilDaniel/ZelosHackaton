@@ -3,9 +3,9 @@ import { Button, Form } from 'antd';
 import { FormComponentProps } from 'antd/lib/form';
 import { LayoutBasic } from 'common/components/LayoutBasic';
 import { Spiner } from 'common/components/Spiner';
-import { PersonInfoForm } from './PersonInfoForm';
-import { communicationApplication, IApplicationConnectedProps } from './Application.communication';
-import { IWorkspaceModelTo, IWorkspaceValues } from './Application.models';
+import { PersonInfoForm } from 'entities/Application/components/PersonInfoForm';
+import { communicationApplication, IApplicationConnectedProps } from 'entities/Application/Application.communication';
+import { IWorkspaceModelTo, IWorkspaceValues } from 'entities/Application/Application.models';
 
 type AllProps = FormComponentProps & IApplicationConnectedProps;
 

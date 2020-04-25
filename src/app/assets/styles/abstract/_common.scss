@@ -9,7 +9,16 @@
     justify-content: flex-end;
   }
 }
+
 .ant-form {
   width: 100%;
-  padding: 0px 6vw;
+  padding: $spacer-300 6vw;
+
+  &.modal-form {
+    padding: 0
+  }
+}
+
+.h-100 {
+  height: 100%;
 }

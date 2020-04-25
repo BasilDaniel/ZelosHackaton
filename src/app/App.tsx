@@ -6,8 +6,8 @@ import { communicationAuth, IAuthConnectedProps } from 'entities/Auth/Auth.commu
 import Login from 'entities/Auth/components/Login';
 import NotFound from 'entities/Auth/components/NotFound';
 import RoleLayoutSwitch from './pages/RoleLayoutSwitch';
-import ApplicationPage from 'entities/Application/ApplicationPage';
-import { ApplicationItem } from 'entities/Application/ApplicationItem';
+import ApplicationPage from 'entities/Application/components/ApplicationPage';
+import { ApplicationItem } from 'entities/Application/components/ApplicationItem';
 
 export enum ERoutes {
   Login = 'login',

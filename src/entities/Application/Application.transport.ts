@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IWorkspaceModelTo } from './Application.models';
+import { IUpdateWorkspaceModelTo, IWorkspaceModelTo } from './Application.models';
 
 const basePath = '/workspaces';
 
@@ -23,6 +23,8 @@ export const applicationTransport = {
         }
       });
     });
-  }
+  },
+  getWorkspace: (id: string) => axios.get(`${basePath}/${id}`).then(r => r.data),
+  updateWorkspace: (params: IUpdateWorkspaceModelTo) => axios.patch(`${basePath}/${params.id}/${params.action}`, { ...params })
   // axios.post(`${basePath}`, model).then(r => r.data)
 };
