@@ -21,12 +21,16 @@ class ApplicationPage extends React.Component<AllProps> {
   }
   render() {
     const { form, workspacesModel } = this.props;
-    const { data, loading } = workspacesModel;
+    const { loading, errors } = workspacesModel;
+    let isNextStep = false;
+    if (errors && errors.data && errors.data.errors) {
+      isNextStep = !errors.data.errors.some(item => item.param === 'application');
+    }
 
     return (
       <LayoutBasic>
         {loading && <Spiner size="large" align="hover" />}
-        {!data ? (
+        {!isNextStep ? (
           <Form onSubmit={this.handleSubmit}>
             <PersonInfoForm form={form}></PersonInfoForm>
             <ButtonWrapper align="right">
@@ -63,16 +67,16 @@ class ApplicationPage extends React.Component<AllProps> {
   handleSubmit = e => {
     e.preventDefault();
     const { form, addWorkspacesModel, workspacesModel } = this.props;
-    const { data } = workspacesModel;
+    const { params } = workspacesModel;
 
     form.validateFieldsAndScroll((err, values: IWorkspaceValues) => {
       if (!err) {
         console.log(values);
         let model: IWorkspaceModelTo = { application: { ...values } };
-        if (data) {
-          const { id, ...rest } = data;
+        if (params) {
+          const { application } = params;
           model = {
-            application: { ...rest.application },
+            application: application,
             workspace: { domain: values.domain, workspaceName: values.workspaceName },
             zelos: { subdomain: values.subdomain, zelosEmail: values.zelosEmail, password: values.password }
           };
