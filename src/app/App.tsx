@@ -17,6 +17,14 @@ export enum ERoutes {
 }
 
 class App extends React.Component<IAuthConnectedProps> {
+  constructor(props: IAuthConnectedProps) {
+    super(props);
+    const { authModel, initAuthModel } = this.props;
+    const { data } = authModel;
+    if (!data?.access) {
+      initAuthModel();
+    }
+  }
   render() {
     return (
       <UIErrorHandler>

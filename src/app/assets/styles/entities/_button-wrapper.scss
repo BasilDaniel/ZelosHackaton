@@ -1,10 +1,19 @@
 @import 'abstract/variables';
 
 .button-wrapper {
-  div {
-    width: 100px;
+  padding: 30px 0;
+  button {
+    max-inline-size: 130px;
+    margin: 0 5px;
+    &:first-child {
+      margin-left: 0;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
   }
   display: flex;
+  flex-direction: row;
   &_left {
     justify-content: flex-end;
   }
@@ -14,5 +23,4 @@
   &_right {
     justify-content: flex-end;
   }
-  padding: 30px 0;
 }

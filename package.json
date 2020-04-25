@@ -62,7 +62,7 @@
     "dev": "concurrently --kill-others \"yarn start\"",
     "compile": "yarn build"
   },
-  "proxy": "https://zelos.help/api/auth/login",
+  "proxy": "https://zelos.help",
   "eslintConfig": {
     "extends": "react-app"
   },

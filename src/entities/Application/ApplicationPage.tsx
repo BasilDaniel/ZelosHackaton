@@ -1,14 +1,14 @@
 import React from 'react';
 import { Button, Form } from 'antd';
 import { FormComponentProps } from 'antd/lib/form';
+import { AntdFormHelper } from '@axmit/antd-helpers';
 import { LayoutBasic } from 'common/components/LayoutBasic';
 import { Spiner } from 'common/components/Spiner';
+import { ButtonWrapper } from 'common/components/ButtonWrapper';
 import { PersonInfoForm } from './PersonInfoForm';
 import { communicationApplication, IApplicationConnectedProps } from './Application.communication';
 import { IWorkspaceModelTo, IWorkspaceValues } from './Application.models';
 import { WorkspaceInfoForm } from './WorkspaceInfoForm';
-import { AntdFormHelper } from '@axmit/antd-helpers';
-import { ButtonWrapper } from 'common/components/ButtonWrapper';
 
 type AllProps = FormComponentProps & IApplicationConnectedProps;
 
@@ -28,14 +28,18 @@ class ApplicationPage extends React.Component<AllProps> {
           <Form onSubmit={this.handleSubmit}>
             <PersonInfoForm form={form}></PersonInfoForm>
             <ButtonWrapper align="right">
-              <Button htmlType="submit">Next</Button>
+              <Button htmlType="submit" type="primary">
+                Next
+              </Button>
             </ButtonWrapper>
           </Form>
         ) : (
           <Form onSubmit={this.handleSubmit}>
             <WorkspaceInfoForm form={form} />
             <ButtonWrapper align="right">
-              <Button htmlType="submit">Submit</Button>
+              <Button htmlType="submit" type="primary">
+                Submit
+              </Button>
             </ButtonWrapper>
           </Form>
         )}

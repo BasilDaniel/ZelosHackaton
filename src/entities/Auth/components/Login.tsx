@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { FormComponentProps } from 'antd/lib/form';
-import { Form } from 'antd';
+import { Form, Button } from 'antd';
 import { AntdFormHelper } from '@axmit/antd-helpers';
-import Button from 'common/components/Button';
 import FormInput from 'common/components/Form/FormInput';
+import { ButtonWrapper } from 'common/components/ButtonWrapper';
 import { IAuthConnectedProps, communicationAuth } from 'entities/Auth/Auth.communication';
 import { ILoginModel } from 'entities/Auth/Auth.models';
 
@@ -18,11 +18,11 @@ class Login extends React.Component<AllProps> {
         <h1>Log in</h1>
         <FormInput form={form} decoratorName="email" label="Email" inputType="email" required />
         <FormInput form={form} decoratorName="password" label="Password" inputType="password" required />
-        <div className="login-button">
-          <Button type="success" size="xl" HTMLType="submit">
+        <ButtonWrapper align="center">
+          <Button htmlType="submit" type="primary">
             Log in
           </Button>
-        </div>
+        </ButtonWrapper>
       </Form>
     );
   }
