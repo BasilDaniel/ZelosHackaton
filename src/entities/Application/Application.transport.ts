@@ -19,7 +19,7 @@ export const applicationTransport = {
         },
         workspace: {
           domain: model.workspace?.domain || '',
-          name: model.workspace?.name || ''
+          workspaceName: model.workspace?.workspaceName || ''
         }
       });
     });

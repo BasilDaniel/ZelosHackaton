@@ -9,11 +9,11 @@ export interface IApplication {
 }
 export interface IWorkspace {
   domain: string;
-  name: string;
+  workspaceName: string;
 }
 export interface IZelos {
   subdomain: string;
-  email: string;
+  zelosEmail: string;
   password: string;
 }
 
