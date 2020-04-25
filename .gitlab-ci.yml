@@ -1,0 +1,40 @@
+image: docker:stable
+stages:
+  - build
+  - push
+
+build:
+  stage: build
+  image: node:12
+  only:
+    refs:
+      - master
+  cache:
+    paths:
+      - node_modules
+      - .yarn
+  before_script:
+    - yarn install
+  script:
+    - yarn build
+  artifacts:
+    paths:
+      - build
+    expire_in: 1 hour
+
+push:
+  stage: push
+  image: docker:stable
+  services:
+      - docker:dind
+  variables:
+      DOCKER_DRIVER: overlay2
+      DOCKER_TLS_CERTDIR: "/certs"
+  only:
+    refs:
+      - master
+  before_script:
+    - docker login -u "${DOCKER_HUB_USER}" -p "${DOCKER_HUB_PASSWORD}"
+  script:
+    - docker build -t zelosapp/ch-manager:latest -t zelosapp/ch-manager:${CI_COMMIT_SHORT_SHA} .
+    - docker push zelosapp/ch-manager
