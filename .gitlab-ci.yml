@@ -1,7 +1,10 @@
 image: docker:stable
+stages:
+  - build
+  - push
 
-compile:
-  stage: compile
+build:
+  stage: build
   image: node:12
   only:
     refs:
@@ -19,8 +22,8 @@ compile:
       - build
     expire_in: 1 hour
 
-build:
-  stage: build
+push:
+  stage: push
   image: docker:stable
   services:
       - docker:dind
