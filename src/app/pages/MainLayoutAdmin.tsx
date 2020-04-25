@@ -22,7 +22,7 @@ class MainLayoutAdminComponent extends React.Component<AllProps> {
 
     const activeTab = new URL(window.location.href).searchParams.get('tab') || EWorkspaceStatus.Enabled;
 
-    const columns = [
+    const appColumns = [
       {
         title: 'Name',
         dataIndex: 'application.name'
@@ -41,15 +41,44 @@ class MainLayoutAdminComponent extends React.Component<AllProps> {
       }
     ];
 
+    const wsColumns = [
+      {
+        title: 'Workspace',
+        dataIndex: 'workspace.domain'
+      },
+      {
+        title: '',
+        render: record => (
+          <div onClick={() => this.goToAppItem(record)} className="link-to-item">
+            View
+          </div>
+        )
+      }
+    ];
+
     return (
       <Row type="flex" justify="center">
         <Card className="application-card">
-          <Tabs defaultActiveKey={activeTab} onChange={this.onSwitchTab}>
+          <Tabs defaultActiveKey={activeTab} onChange={this.onSwitchTab} className="app-table">
             <Tabs.TabPane tab="Applications" key={EWorkspaceStatus.Pending}>
-              <Table columns={columns} dataSource={workspaceCollection} rowKey={'id'} pagination={false} loading={loading} />
+              <Table
+                className="app-table"
+                columns={appColumns}
+                dataSource={workspaceCollection}
+                rowKey={'id'}
+                pagination={false}
+                loading={loading}
+              />
             </Tabs.TabPane>
             <Tabs.TabPane tab="Workspaces" key={EWorkspaceStatus.Enabled}>
-              <Table columns={columns} dataSource={workspaceCollection} rowKey={'id'} pagination={false} loading={loading} />
+              <Table
+                className="app-table"
+                columns={wsColumns}
+                dataSource={workspaceCollection}
+                rowKey={'id'}
+                pagination={false}
+                loading={loading}
+              />
             </Tabs.TabPane>
           </Tabs>
         </Card>

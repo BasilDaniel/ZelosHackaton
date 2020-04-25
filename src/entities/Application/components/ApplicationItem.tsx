@@ -9,6 +9,7 @@ import { EAppActionTypes } from 'entities/Auth/Auth.models';
 import { Spiner } from 'common/components/Spiner';
 import NotFound from 'entities/Auth/components/NotFound';
 import { ButtonWrapper } from 'common/components/ButtonWrapper';
+import LogoutButton from 'common/components/LogoutButton';
 
 interface IComponentState {
   approveModalVisible: boolean;

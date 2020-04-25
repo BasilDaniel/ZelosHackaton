@@ -16,7 +16,11 @@ class RoleLayoutSwitch extends React.Component<AllProps> {
     }
 
     if (data && data.access) {
-      return <MainLayoutAdmin />;
+      return (
+        <>
+          <MainLayoutAdmin />
+        </>
+      );
     } else {
       return <LandingPage />;
     }
