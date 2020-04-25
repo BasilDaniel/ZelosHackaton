@@ -3,18 +3,28 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 import { Button, Card, Col, Icon, Row } from 'antd';
 import { InfoItem } from 'entities/Application/InfoItem';
-import { PopupModal } from 'entities/Application/PopupModal';
+import { ApproveModal } from 'entities/Application/ApproveModal';
+import { RejectModal } from 'entities/Application/RejectModal';
 
 interface IComponentState {
   approveModalVisible: boolean;
   rejectModalVisible: boolean;
 }
 
-class ApplicationItemComponent extends React.Component<RouteComponentProps, IComponentState> {
+type AllProps = RouteComponentProps<{ id: string }>;
+
+class ApplicationItemComponent extends React.Component<AllProps, IComponentState> {
   state = {
     approveModalVisible: false,
     rejectModalVisible: false
   };
+
+  componentDidMount(): void {
+    const { match } = this.props;
+    const id = match.params.id;
+
+    console.log('get App', id);
+  }
 
   render() {
     const { approveModalVisible, rejectModalVisible } = this.state;
@@ -56,8 +66,8 @@ class ApplicationItemComponent extends React.Component<RouteComponentProps, ICom
             </div>
           </Card>
         </Row>
-        <PopupModal modalType="approve" modalVisible={approveModalVisible} onCancel={this.cancel} onOk={this.approveApp} />
-        <PopupModal modalType="reject" modalVisible={rejectModalVisible} onCancel={this.cancel} onOk={this.rejectApp} />
+        <ApproveModal modalVisible={approveModalVisible} onCancel={this.cancel} />
+        <RejectModal modalVisible={rejectModalVisible} onCancel={this.cancel} />
       </>
     );
   }
@@ -65,14 +75,6 @@ class ApplicationItemComponent extends React.Component<RouteComponentProps, ICom
   goBack = () => {
     const { history } = this.props;
     history.goBack();
-  };
-
-  approveApp = () => {
-    console.log('approve');
-  };
-
-  rejectApp = () => {
-    console.log('reject');
   };
 
   cancel = () => {
