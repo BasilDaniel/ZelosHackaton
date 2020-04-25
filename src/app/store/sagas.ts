@@ -2,7 +2,6 @@ import { all, takeEvery, put } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 import { message } from 'antd';
 import { EResponseStatus } from 'common/helpers/errors.helper';
-import { ERoutes } from 'app/App';
 import { communicationAuth } from 'entities/Auth/Auth.communication';
 import { communicationApplication } from 'entities/Application/Application.communication';
 
@@ -12,7 +11,8 @@ function* errorWatcher() {
     if (action.type.match('FAIL')) {
       switch (status) {
         case EResponseStatus.Unauthorized:
-          yield put(push(`/${ERoutes.Login}`));
+          yield put(push(`/`));
+          message.error(`Status: ${status}, error: ${action.payload.statusText}`);
           return;
         case EResponseStatus.InternalServerError:
           message.error(`Status: ${status}, error: ${action.payload.statusText}`);
