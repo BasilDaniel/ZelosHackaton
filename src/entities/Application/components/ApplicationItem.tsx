@@ -9,6 +9,8 @@ import { EAppActionTypes } from 'entities/Auth/Auth.models';
 import { Spiner } from 'common/components/Spiner';
 import NotFound from 'entities/Auth/components/NotFound';
 import { ButtonWrapper } from 'common/components/ButtonWrapper';
+import LogoutButton from 'common/components/LogoutButton';
+import { EWorkspaceStatus } from 'entities/Application/Application.models';
 
 interface IComponentState {
   approveModalVisible: boolean;
@@ -39,7 +41,7 @@ class ApplicationItemComponent extends React.Component<AllProps, IComponentState
       return loading ? <Spiner size="large" align="hover" /> : <NotFound />;
     }
 
-    const { application, workspace } = workspaceData;
+    const { application, workspace, status } = workspaceData;
     const { organization, country, name, phone, email, details, website } = application;
     const { domain } = workspace;
 
@@ -54,6 +56,7 @@ class ApplicationItemComponent extends React.Component<AllProps, IComponentState
 
     return (
       <>
+        <LogoutButton />
         <Row type="flex" justify="center">
           <Card title={cardTitle} className="application-card">
             <Row type="flex" gutter={24}>
@@ -70,14 +73,16 @@ class ApplicationItemComponent extends React.Component<AllProps, IComponentState
                 <InfoItem fieldName="Domain" fieldValue={domain} />
               </Col>
             </Row>
-            <ButtonWrapper align="right">
-              <Button type="danger" onClick={this.showRejectModal}>
-                Reject
-              </Button>
-              <Button type="primary" onClick={this.showApproveModal}>
-                Approve
-              </Button>
-            </ButtonWrapper>
+            {status === EWorkspaceStatus.Pending && (
+              <ButtonWrapper align="right">
+                <Button type="danger" onClick={this.showRejectModal}>
+                  Reject
+                </Button>
+                <Button type="primary" onClick={this.showApproveModal}>
+                  Approve
+                </Button>
+              </ButtonWrapper>
+            )}
           </Card>
         </Row>
         <UpdateAppModal

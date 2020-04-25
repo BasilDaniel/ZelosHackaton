@@ -3,10 +3,6 @@
 .application-card {
   width: 100%;
   max-width: 960px;
-  border: 1px solid transparent;
-  border-radius: 8px;
-  box-shadow: 0 0 0 4px lightGrey;
-  background: #f4f4f4;
   margin: $spacer-300;
 
   & .ant-card-head-title {

@@ -29,6 +29,7 @@ export interface IWorkspaceModelTo {
 }
 export interface IWorkspaceModelFrom {
   id: string;
+  status: EWorkspaceStatus;
   application: IApplication;
   workspace: IWorkspace;
 }
