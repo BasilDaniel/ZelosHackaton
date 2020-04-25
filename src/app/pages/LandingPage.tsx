@@ -2,6 +2,7 @@ import React from 'react';
 import { LayoutBasic } from 'common/components/LayoutBasic';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { ERoutes } from 'app/App';
+import { Button } from 'antd';
 
 class LandingPageComponent extends React.Component<RouteComponentProps> {
   render() {
@@ -20,12 +21,10 @@ class LandingPageComponent extends React.Component<RouteComponentProps> {
             ultrices vitae auctor eu. Aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis.
           </p>
           <div className="row end pt-200 pb-200">
-            <button className="button button__white" onClick={this.goToMoreInfo}>
-              More info
-            </button>
-            <button className="button button__green ml-250" onClick={this.goToOnboarding}>
+            <Button className="button" onClick={this.goToMoreInfo}>More info</Button>
+            <Button type="primary" className="button ml-250" onClick={this.goToOnboarding}>
               Get started
-            </button>
+            </Button>
           </div>
         </div>
       </LayoutBasic>

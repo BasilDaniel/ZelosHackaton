@@ -1,0 +1,30 @@
+@import '../abstract/variables';
+
+.application-card {
+  width: 100%;
+  max-width: 960px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  box-shadow: 0 0 0 4px lightGrey;
+  background: #f4f4f4;
+  margin: $spacer-300;
+
+  & .ant-card-head-title {
+    font-size: $font-sizer-300;
+    font-weight: bold;
+  }
+}
+
+.back-button {
+  margin-right: $spacer-350;
+  cursor: pointer;
+}
+
+.info-item {
+  font-size: $font-sizer-200;
+  padding-bottom: $spacer-200;
+
+  &__title {
+    font-weight: bold;
+  }
+}

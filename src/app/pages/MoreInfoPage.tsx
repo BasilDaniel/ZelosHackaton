@@ -3,6 +3,7 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 import { LayoutBasic } from 'common/components/LayoutBasic';
 import { ERoutes } from 'app/App';
+import { Button } from 'antd';
 
 class MoreInfoPageComponent extends React.Component<RouteComponentProps> {
   render() {
@@ -31,9 +32,9 @@ class MoreInfoPageComponent extends React.Component<RouteComponentProps> {
             aliqua. Lectus sit amet est placerat in egestas erat. Nulla facilisi nullam vehicula ipsum.
           </p>
           <div className="row end pt-200">
-            <button className="button button__green ml-250" onClick={this.goToOnboarding}>
+            <Button className="button" type="primary" onClick={this.goToOnboarding}>
               Get started
-            </button>
+            </Button>
           </div>
         </div>
       </LayoutBasic>
