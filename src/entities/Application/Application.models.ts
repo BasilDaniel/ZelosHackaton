@@ -28,3 +28,9 @@ export interface IWorkspaceModelFrom {
   workspace: IWorkspace;
 }
 export interface IWorkspaceValues extends IApplication, IWorkspace, IZelos {}
+
+export interface IUpdateWorkspaceModelTo {
+  id: string;
+  action: 'enable' | 'disable';
+  note?: string;
+}

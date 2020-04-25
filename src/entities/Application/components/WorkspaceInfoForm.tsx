@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { WrappedFormUtils } from 'antd/lib/form/Form';
+
 import FormInput from 'common/components/Form/FormInput';
 
 interface IComponentProps {

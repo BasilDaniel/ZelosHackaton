@@ -1,14 +1,14 @@
 import React from 'react';
 import { Button, Form } from 'antd';
-import { FormComponentProps } from 'antd/lib/form';
 import { AntdFormHelper } from '@axmit/antd-helpers';
+import { FormComponentProps } from 'antd/lib/form';
 import { LayoutBasic } from 'common/components/LayoutBasic';
 import { Spiner } from 'common/components/Spiner';
 import { ButtonWrapper } from 'common/components/ButtonWrapper';
 import { PersonInfoForm } from './PersonInfoForm';
-import { communicationApplication, IApplicationConnectedProps } from './Application.communication';
-import { IWorkspaceModelTo, IWorkspaceValues } from './Application.models';
-import { WorkspaceInfoForm } from './WorkspaceInfoForm';
+import { communicationApplication, IApplicationConnectedProps } from 'entities/Application/Application.communication';
+import { WorkspaceInfoForm } from 'entities/Application/components/WorkspaceInfoForm';
+import { IWorkspaceModelTo, IWorkspaceValues } from 'entities/Application/Application.models';
 
 type AllProps = FormComponentProps & IApplicationConnectedProps;
 
