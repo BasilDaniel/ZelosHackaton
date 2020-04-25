@@ -1,3 +1,8 @@
+export enum EWorkspaseStatus {
+  Enabled = 'enabled',
+  Disabled = 'disabled',
+  Pending = 'pending'
+}
 export interface IApplication {
   organization: string;
   country: string;
@@ -33,4 +38,19 @@ export interface IUpdateWorkspaceModelTo {
   id: string;
   action: 'enable' | 'disable';
   note?: string;
+}
+
+export interface IWorkspaceCollectionParams {
+  offset: number;
+  limit: number;
+  status?: EWorkspaseStatus;
+}
+
+export interface IWorkspaceMeta {
+  count: number;
+}
+
+export interface IWorkspaceCollection {
+  data: IWorkspaceModelFrom[];
+  meta: IWorkspaceMeta;
 }
