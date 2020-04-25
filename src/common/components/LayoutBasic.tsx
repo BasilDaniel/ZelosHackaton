@@ -12,7 +12,7 @@ export class LayoutBasic extends React.Component<IComponentProps> {
     return (
       <Row type="flex" justify="center">
         <Col md={12} xs={24}>
-          <img src={imageSrc ? imageSrc : commonImage} alt="About US" width="100%" />
+          <img src={imageSrc ? imageSrc : commonImage} alt="About US" style={{ maxWidth: '100%', height: 'auto' }} />
         </Col>
         <Col md={12} xs={24}>
           {children}

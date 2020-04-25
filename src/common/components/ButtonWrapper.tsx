@@ -6,9 +6,5 @@ interface IComponentProps {
 
 export const ButtonWrapper: FC<IComponentProps> = props => {
   const { children, align = 'center' } = props;
-  return (
-    <div className={`button-wrapper button-wrapper_${align}`}>
-      <div>{children}</div>
-    </div>
-  );
+  return <div className={`button-wrapper button-wrapper_${align}`}>{children}</div>;
 };
