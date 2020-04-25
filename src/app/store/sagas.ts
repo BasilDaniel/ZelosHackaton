@@ -4,6 +4,7 @@ import { message } from 'antd';
 import { EResponseStatus } from 'common/helpers/errors.helper';
 import { ERoutes } from 'app/App';
 import { communicationAuth } from 'entities/Auth/Auth.communication';
+import { communicationApplication } from 'entities/Application/Application.communication';
 
 function* errorWatcher() {
   yield takeEvery('*', function* logger(action: any) {
@@ -24,5 +25,5 @@ function* errorWatcher() {
 }
 
 export default function* rootSaga() {
-  yield all([errorWatcher(), ...communicationAuth.sagas]);
+  yield all([errorWatcher(), ...communicationAuth.sagas, ...communicationApplication.sagas]);
 }
