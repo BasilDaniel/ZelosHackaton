@@ -20,16 +20,16 @@ class ApplicationItemComponent extends React.Component<RouteComponentProps> {
         <Card title={cardTitle} className="application-card">
           <Row type="flex" gutter={24}>
             <Col md={12} xs={24}>
-              <InfoItem fieldName="org" fieldValue="OPEC" />
-              <InfoItem fieldName="org" fieldValue="OPEC" />
-              <InfoItem fieldName="org" fieldValue="OPEC" />
-              <InfoItem fieldName="org" fieldValue="OPEC" />
+              <InfoItem fieldName="Organization" fieldValue="OPEC" />
+              <InfoItem fieldName="Location" fieldValue="OPEC" />
+              <InfoItem fieldName="Name" fieldValue="OPEC" />
+              <InfoItem fieldName="Phone number" fieldValue="OPEC" />
+              <InfoItem fieldName="Email address" fieldValue="OPEC" />
             </Col>
             <Col md={12} xs={24}>
-              <InfoItem fieldName="org" fieldValue="OPEC" />
-              <InfoItem fieldName="org" fieldValue="OPEC" />
-              <InfoItem fieldName="org" fieldValue="OPEC" />
-              <InfoItem fieldName="org" fieldValue="OPEC" />
+              <InfoItem fieldName="Website" fieldValue="OPEC" />
+              <InfoItem fieldName="About cause" fieldValue="OPEC" />
+              <InfoItem fieldName="Domain" fieldValue="OPEC" />
             </Col>
           </Row>
           <div className="row end pt-200">
