@@ -39,7 +39,13 @@ class ApplicationItemComponent extends React.Component<AllProps, IComponentState
       return loading ? <Spiner size="large" align="hover" /> : <NotFound />;
     }
 
-    const { application, workspace, status } = workspaceData;
+    const application = workspaceData.application;
+
+    if (!application) {
+      return null;
+    }
+
+    const { workspace, status } = workspaceData;
     const { organization, country, name, phone, email, details, website } = application;
     const { domain } = workspace;
 
