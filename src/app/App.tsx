@@ -7,12 +7,13 @@ import Login from 'entities/Auth/components/Login';
 import NotFound from 'entities/Auth/components/NotFound';
 import RoleLayoutSwitch from './pages/RoleLayoutSwitch';
 import ApplicationPage from 'entities/Application/ApplicationPage';
+import { ApplicationItem } from 'entities/Application/ApplicationItem';
 
 export enum ERoutes {
   Login = 'login',
   ApplicationInfo = 'application-info',
   MoreInfo = 'more-info',
-  AdminBO = 'admin-bo'
+  ApplicationItem = 'application/:id'
 }
 
 class App extends React.Component<IAuthConnectedProps> {
@@ -23,6 +24,7 @@ class App extends React.Component<IAuthConnectedProps> {
           <Route path={`/${ERoutes.Login}`} component={Login} exact />
           <Route path={`/${ERoutes.MoreInfo}`} component={MoreInfoPage} exact />
           <Route path={`/${ERoutes.ApplicationInfo}`} component={ApplicationPage} exact />
+          <Route path={`/${ERoutes.ApplicationItem}`} component={ApplicationItem} />
           <Route path="/" component={RoleLayoutSwitch} exact />
           <Route path="*" component={NotFound} />
         </Switch>

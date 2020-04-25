@@ -1,34 +1,5 @@
 @import 'abstract/variables';
 
-.button {
-  width: 120px;
-  border: 2px solid black;
-  box-shadow: 2px 2px 0 0 black;
-  outline: none;
-  transition: all 0.3s;
-
-  &:hover {
-    transition: all 0.3s;
-    cursor: pointer;
-  }
-
-  &:active {
-    transform: translate(2px, 2px);
-    box-shadow: 0 0 0;
-  }
-
-  &__white {
-    background: white;
-    color: black;
-  }
-
-  &__green {
-    background: green;
-    color: white;
-  }
-
-  &__red {
-    background: red;
-    color: white;
-  }
+.ant-btn.button {
+  max-width: 130px;
 }
