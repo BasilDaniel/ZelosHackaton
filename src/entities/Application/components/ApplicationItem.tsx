@@ -8,6 +8,7 @@ import { communicationApplication, IApplicationConnectedProps } from 'entities/A
 import { EAppActionTypes } from 'entities/Auth/Auth.models';
 import { Spiner } from 'common/components/Spiner';
 import NotFound from 'entities/Auth/components/NotFound';
+import { ButtonWrapper } from 'common/components/ButtonWrapper';
 
 interface IComponentState {
   approveModalVisible: boolean;
@@ -69,14 +70,14 @@ class ApplicationItemComponent extends React.Component<AllProps, IComponentState
                 <InfoItem fieldName="Domain" fieldValue={domain} />
               </Col>
             </Row>
-            <div className="row end pt-200">
-              <Button className="button" type="danger" onClick={this.showRejectModal}>
+            <ButtonWrapper align="right">
+              <Button type="danger" onClick={this.showRejectModal}>
                 Reject
               </Button>
-              <Button className="button ml-250" type="primary" onClick={this.showApproveModal}>
+              <Button type="primary" onClick={this.showApproveModal}>
                 Approve
               </Button>
-            </div>
+            </ButtonWrapper>
           </Card>
         </Row>
         <UpdateAppModal

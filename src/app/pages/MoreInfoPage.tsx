@@ -4,6 +4,7 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { LayoutBasic } from 'common/components/LayoutBasic';
 import { ERoutes } from 'app/App';
 import { Button, Row } from 'antd';
+import { ButtonWrapper } from 'common/components/ButtonWrapper';
 
 class MoreInfoPageComponent extends React.Component<RouteComponentProps> {
   render() {
@@ -33,16 +34,24 @@ class MoreInfoPageComponent extends React.Component<RouteComponentProps> {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
               aliqua. Lectus sit amet est placerat in egestas erat. Nulla facilisi nullam vehicula ipsum.
             </p>
-            <div className="row end pt-200">
-              <Button className="button" type="primary" onClick={this.goToOnboarding}>
+            <ButtonWrapper align="right">
+              <Button onClick={this.goBack}>
+                Back
+              </Button>
+              <Button type="primary" onClick={this.goToOnboarding}>
                 Get started
               </Button>
-            </div>
+            </ButtonWrapper>
           </div>
         </Row>
       </LayoutBasic>
     );
   }
+
+  goBack = () => {
+    const { history } = this.props;
+    history.goBack();
+  };
 
   goToOnboarding = () => {
     const { history } = this.props;

@@ -5,6 +5,7 @@ import TextArea from 'antd/es/input/TextArea';
 
 import { communicationApplication, IApplicationConnectedProps } from 'entities/Application/Application.communication';
 import { EAppActionTypes } from 'entities/Auth/Auth.models';
+import { ButtonWrapper } from 'common/components/ButtonWrapper';
 
 interface IComponentProps {
   title: string;
@@ -37,34 +38,20 @@ class UpdateAppModalComponent extends React.Component<AllProps, IComponentState>
             <TextArea rows={4} className="mb-200" onChange={e => this.onTextChange(e)} />
           </>
         )}
-        <div className="row end">
-          <Button className="button" onClick={onCancel} loading={loading} disabled={loading}>
+        <ButtonWrapper align="right">
+          <Button onClick={onCancel} loading={loading} disabled={loading}>
             Cancel
           </Button>
           {reject ? (
-            <Button
-              type="danger"
-              htmlType="submit"
-              className="button ml-250"
-              onClick={this.updateApp}
-              loading={loading}
-              disabled={loading}
-            >
+            <Button type="danger" htmlType="submit" onClick={this.updateApp} loading={loading} disabled={loading}>
               Reject
             </Button>
           ) : (
-            <Button
-              type="primary"
-              htmlType="submit"
-              onClick={this.updateApp}
-              className="button ml-250"
-              loading={loading}
-              disabled={loading}
-            >
+            <Button type="primary" htmlType="submit" onClick={this.updateApp} loading={loading} disabled={loading}>
               Approve
             </Button>
           )}
-        </div>
+        </ButtonWrapper>
       </Modal>
     );
   }

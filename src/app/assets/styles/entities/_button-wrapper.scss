@@ -1,9 +1,9 @@
-@import 'abstract/variables';
+@import '../abstract/variables';
 
 .button-wrapper {
   padding: 30px 0;
   button {
-    max-inline-size: 130px;
+    max-width: 130px;
     margin: 0 5px;
     &:first-child {
       margin-left: 0;

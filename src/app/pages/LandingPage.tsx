@@ -3,12 +3,13 @@ import { LayoutBasic } from 'common/components/LayoutBasic';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { ERoutes } from 'app/App';
 import { Button, Row } from 'antd';
+import { ButtonWrapper } from 'common/components/ButtonWrapper';
 
 class LandingPageComponent extends React.Component<RouteComponentProps> {
   render() {
     return (
       <LayoutBasic>
-        <Row type="flex" justify="center" align="middle" className='content h-100'>
+        <Row type="flex" justify="center" align="middle" className="content h-100">
           <div>
             <h1>Launch your own Zelos Community Helpdesk</h1>
             <p>
@@ -22,14 +23,13 @@ class LandingPageComponent extends React.Component<RouteComponentProps> {
               nisi scelerisque eu ultrices vitae auctor eu. Aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices
               sagittis.
             </p>
-            <div className="row end">
-              <Button className="button" onClick={this.goToMoreInfo}>
-                More info
-              </Button>
-              <Button type="primary" className="button ml-250" onClick={this.goToOnboarding}>
+
+            <ButtonWrapper align="right">
+              <Button onClick={this.goToMoreInfo}>More info</Button>
+              <Button type="primary" onClick={this.goToOnboarding}>
                 Get started
               </Button>
-            </div>
+            </ButtonWrapper>
           </div>
         </Row>
       </LayoutBasic>
