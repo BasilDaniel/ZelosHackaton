@@ -13,6 +13,7 @@ export enum ERoutes {
   Login = 'login',
   ApplicationInfo = 'application-info',
   MoreInfo = 'more-info',
+  Application = 'application',
   ApplicationItem = 'application/:id'
 }
 

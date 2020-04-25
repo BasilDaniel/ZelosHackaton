@@ -1,4 +1,4 @@
-export enum EWorkspaseStatus {
+export enum EWorkspaceStatus {
   Enabled = 'enabled',
   Disabled = 'disabled',
   Pending = 'pending'
@@ -41,9 +41,9 @@ export interface IUpdateWorkspaceModelTo {
 }
 
 export interface IWorkspaceCollectionParams {
-  offset: number;
-  limit: number;
-  status?: EWorkspaseStatus;
+  offset?: number;
+  limit?: number;
+  status: string;
 }
 
 export interface IWorkspaceMeta {
