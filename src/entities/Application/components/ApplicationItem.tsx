@@ -7,6 +7,7 @@ import { UpdateAppModal } from 'entities/Application/components/UpdateAppModal';
 import { communicationApplication, IApplicationConnectedProps } from 'entities/Application/Application.communication';
 import { EAppActionTypes } from 'entities/Auth/Auth.models';
 import { Spiner } from 'common/components/Spiner';
+import NotFound from 'entities/Auth/components/NotFound';
 
 interface IComponentState {
   approveModalVisible: boolean;
@@ -33,8 +34,8 @@ class ApplicationItemComponent extends React.Component<AllProps, IComponentState
     const { workspacesModel } = this.props;
     const { data: workspaceData, loading } = workspacesModel;
 
-    if (loading || !workspaceData) {
-      return <Spiner size="large" align="hover" />;
+    if (!workspaceData) {
+      return loading ? <Spiner size="large" align="hover" /> : <NotFound />;
     }
 
     const { application, workspace } = workspaceData;

@@ -43,6 +43,7 @@ class ApplicationPage extends React.Component<AllProps> {
       </LayoutBasic>
     );
   }
+
   handleSubmit = e => {
     e.preventDefault();
     const { form, addWorkspacesModel, workspacesModel } = this.props;
