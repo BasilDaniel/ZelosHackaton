@@ -1,8 +1,9 @@
 import React from 'react';
 import { Button, Modal } from 'antd';
-import TextArea from 'antd/es/input/TextArea';
-import { communicationApplication, IApplicationConnectedProps } from 'entities/Application/Application.communication';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
+import TextArea from 'antd/es/input/TextArea';
+
+import { communicationApplication, IApplicationConnectedProps } from 'entities/Application/Application.communication';
 import { EAppActionTypes } from 'entities/Auth/Auth.models';
 
 interface IComponentProps {

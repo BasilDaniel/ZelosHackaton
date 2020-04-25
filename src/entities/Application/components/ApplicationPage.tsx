@@ -1,10 +1,14 @@
 import React from 'react';
 import { Button, Form } from 'antd';
+import { AntdFormHelper } from '@axmit/antd-helpers';
 import { FormComponentProps } from 'antd/lib/form';
+
 import { LayoutBasic } from 'common/components/LayoutBasic';
 import { Spiner } from 'common/components/Spiner';
-import { PersonInfoForm } from 'entities/Application/components/PersonInfoForm';
+import { ButtonWrapper } from 'common/components/ButtonWrapper';
 import { communicationApplication, IApplicationConnectedProps } from 'entities/Application/Application.communication';
+import { WorkspaceInfoForm } from 'entities/Application/components/WorkspaceInfoForm';
+import { PersonInfoForm } from 'entities/Application/components/PersonInfoForm';
 import { IWorkspaceModelTo, IWorkspaceValues } from 'entities/Application/Application.models';
 
 type AllProps = FormComponentProps & IApplicationConnectedProps;
@@ -24,11 +28,16 @@ class ApplicationPage extends React.Component<AllProps> {
         {!data ? (
           <Form onSubmit={this.handleSubmit}>
             <PersonInfoForm form={form}></PersonInfoForm>
-            <Button htmlType="submit">Next</Button>
+            <ButtonWrapper align="right">
+              <Button htmlType="submit">Next</Button>
+            </ButtonWrapper>
           </Form>
         ) : (
           <Form onSubmit={this.handleSubmit}>
-            <Button htmlType="submit">Submit</Button>
+            <WorkspaceInfoForm form={form} />
+            <ButtonWrapper align="right">
+              <Button htmlType="submit">Submit</Button>
+            </ButtonWrapper>
           </Form>
         )}
       </LayoutBasic>
@@ -47,8 +56,8 @@ class ApplicationPage extends React.Component<AllProps> {
           const { id, ...rest } = data;
           model = {
             application: { ...rest.application },
-            workspace: { domain: values.domain, name: values.name },
-            zelos: { subdomain: values.subdomain, email: values.email, password: values.password }
+            workspace: { domain: values.domain, workspaceName: values.workspaceName },
+            zelos: { subdomain: values.subdomain, zelosEmail: values.zelosEmail, password: values.password }
           };
         }
         addWorkspacesModel(model);
@@ -56,4 +65,22 @@ class ApplicationPage extends React.Component<AllProps> {
     });
   };
 }
-export default communicationApplication.injector(Form.create()(ApplicationPage));
+export default communicationApplication.injector(
+  Form.create({
+    mapPropsToFields(props: AllProps) {
+      const { workspacesModel } = props;
+      const { params, errors } = workspacesModel;
+      const data = errors && errors.data;
+      let value = {};
+      if (params) {
+        value = {
+          ...params.application,
+          ...params.workspace,
+          ...params.zelos
+        };
+      }
+
+      return AntdFormHelper.mapValidationToFields(value, data);
+    }
+  })(ApplicationPage)
+);

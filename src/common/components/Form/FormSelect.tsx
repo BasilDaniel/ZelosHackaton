@@ -1,6 +1,7 @@
 import React from 'react';
 import { Select } from 'antd';
 import { SelectProps } from 'antd/lib/select';
+
 import Button from 'common/components/Button';
 
 interface IComponentProps extends SelectProps<string> {

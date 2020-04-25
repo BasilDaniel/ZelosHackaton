@@ -14,6 +14,7 @@ export const PersonInfoForm: FC<IComponentProps> = props => {
   const { form } = props;
   return (
     <>
+      <h2>Please tell us about yourself</h2>
       <FormInput form={form} decoratorName="organization" label="What is your organisation called?" required />
       <FormInput form={form} decoratorName="country" label="Where are you located?" required>
         <FormSelect selectOptions={countryList} showSearch></FormSelect>
