@@ -1,15 +1,13 @@
 import React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-
 import { Button, Card, Col, Icon, Row } from 'antd';
+import { Spiner } from 'common/components/Spiner';
+import { ButtonWrapper } from 'common/components/ButtonWrapper';
 import { InfoItem } from 'entities/Application/components/InfoItem';
 import { UpdateAppModal } from 'entities/Application/components/UpdateAppModal';
 import { communicationApplication, IApplicationConnectedProps } from 'entities/Application/Application.communication';
 import { EAppActionTypes } from 'entities/Auth/Auth.models';
-import { Spiner } from 'common/components/Spiner';
 import NotFound from 'entities/Auth/components/NotFound';
-import { ButtonWrapper } from 'common/components/ButtonWrapper';
-import LogoutButton from 'common/components/LogoutButton';
 import { EWorkspaceStatus } from 'entities/Application/Application.models';
 
 interface IComponentState {
@@ -56,7 +54,6 @@ class ApplicationItemComponent extends React.Component<AllProps, IComponentState
 
     return (
       <>
-        <LogoutButton />
         <Row type="flex" justify="center">
           <Card title={cardTitle} className="application-card">
             <Row type="flex" gutter={24}>
