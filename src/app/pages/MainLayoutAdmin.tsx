@@ -1,20 +1,23 @@
 import React from 'react';
-import { Tabs } from 'antd';
+import { Card, Row, Tabs } from 'antd';
 
-class MainLayoutAdmin extends React.Component {
+class MainLayoutAdminComponent extends React.Component {
   render() {
     return (
-      <div>
-        <Tabs defaultActiveKey="1">
-          <Tabs.TabPane tab="Tab 1" key="1">
-            Content of Tab Pane 1
-          </Tabs.TabPane>
-          <Tabs.TabPane tab="Tab 2" key="2">
-            Content of Tab Pane 2
-          </Tabs.TabPane>
-        </Tabs>
-      </div>
+      <Row type="flex" justify="center">
+        <Card className="application-card">
+          <Tabs defaultActiveKey="1">
+            <Tabs.TabPane tab="Tab 1" key="1">
+              Content of Tab Pane 1
+            </Tabs.TabPane>
+            <Tabs.TabPane tab="Tab 2" key="2">
+              Content of Tab Pane 2
+            </Tabs.TabPane>
+          </Tabs>
+        </Card>
+      </Row>
     );
   }
 }
-export default MainLayoutAdmin;
+
+export const MainLayoutAdmin = MainLayoutAdminComponent;
