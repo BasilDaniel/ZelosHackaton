@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { UIErrorHandler } from 'common/components/UIErrorHandler';
-import MainLayout from 'app/pages/MainLayout';
+import { LandingPage } from 'app/pages/LandingPage';
 import { communicationAuth, IAuthConnectedProps } from 'entities/Auth/Auth.communication';
 import ProtectedRoute from 'entities/Auth/components/ProtectedRoute';
 import Login from 'entities/Auth/components/Login';
@@ -9,7 +9,9 @@ import NotFound from 'entities/Auth/components/NotFound';
 
 export enum ERoutes {
   Login = 'login',
-  SignUp = 'signup'
+  SignUp = 'signup',
+  ApplicationInfo = 'application-info',
+  MoreInfo = 'more-info'
 }
 
 class App extends React.Component<IAuthConnectedProps> {
@@ -17,10 +19,10 @@ class App extends React.Component<IAuthConnectedProps> {
     return (
       <UIErrorHandler>
         <Switch>
-          <Route path={`/${ERoutes.Login}`} component={Login} exact/>
-
-          <ProtectedRoute path="/" component={MainLayout}/>
-          <Route path="*" component={NotFound}/>
+          <Route path={`/${ERoutes.Login}`} component={Login} exact />
+          <Route path="/" component={LandingPage} />
+          <Route path="*" component={NotFound} />
+          <ProtectedRoute path="/admin" component={() => <></>} /> {/* Path and component are dummy*/}
         </Switch>
       </UIErrorHandler>
     );

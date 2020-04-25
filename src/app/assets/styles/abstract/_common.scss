@@ -1,0 +1,11 @@
+@import '../abstract/variables';
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  &.end {
+    justify-content: flex-end;
+  }
+}

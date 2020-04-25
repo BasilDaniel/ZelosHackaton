@@ -6,7 +6,6 @@
   margin-right: auto;
   p {
     margin: 8px 0px 22px 0px;
-    font-family: 'Inter Regular';
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -15,7 +14,6 @@
     &:nth-child(3) {
       font-size: 16px;
       text-align: left;
-      font-family: 'Inter Light';
       color: $color-gray;
       margin-bottom: 0;
     }
