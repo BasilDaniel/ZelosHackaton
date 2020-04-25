@@ -33,6 +33,16 @@ button {
   padding: 0;
 }
 
+h1 {
+  font-weight: bold;
+  padding: $spacer-150 0;
+}
+
+p {
+  padding: $spacer-150 0;
+  font-size: $font-sizer-200;
+}
+
 ul {
   list-style-type: none;
 }

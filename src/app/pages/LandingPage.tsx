@@ -19,7 +19,7 @@ class LandingPageComponent extends React.Component<RouteComponentProps> {
             integer vitae justo. Morbi tincidunt augue interdum velit euismod in pellentesque massa. In nisl nisi scelerisque eu
             ultrices vitae auctor eu. Aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis.
           </p>
-          <div className="row end pt-200">
+          <div className="row end pt-200 pb-200">
             <button className="button button__white" onClick={this.goToMoreInfo}>
               More info
             </button>

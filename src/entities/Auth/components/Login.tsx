@@ -2,10 +2,8 @@ import * as React from 'react';
 import { FormComponentProps } from 'antd/lib/form';
 import { Form } from 'antd';
 import { AntdFormHelper } from '@axmit/antd-helpers';
-import { Link } from 'react-router-dom';
 import Button from 'common/components/Button';
 import FormInput from 'common/components/Form/FormInput';
-import { ERoutes } from 'app/App';
 import { IAuthConnectedProps, communicationAuth } from 'entities/Auth/Auth.communication';
 import { ILoginModel } from 'entities/Auth/Auth.models';
 
@@ -25,9 +23,6 @@ class Login extends React.Component<AllProps> {
             Log in
           </Button>
         </div>
-        <p>
-          Don’t have an account? <Link to={`/${ERoutes.SignUp}`}>Sign up</Link>
-        </p>
       </Form>
     );
   }

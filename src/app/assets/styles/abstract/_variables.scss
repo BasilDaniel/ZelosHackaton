@@ -1,27 +1,7 @@
 //official color palette
-// TODO Move to tone range names colors
 $color-white: #ffffff;
 $color-white-transparent: #ffffffc2;
-$color-sugar-cane: #f6fff0;
-$color-bilbao: #397515;
-$color-bilbao-transparent: #39751517;
-$color-mine-shaft-dark: #1f1f1f;
-$color-mine-shaft: #333333;
-$color-tundora: #414141;
-$color-gray: #8b8b8b;
-$color-dove-gray: #666666;
-$color-gallery: #ededed;
-$color-bright-turquoise: #0bd2de;
-$color-athens-gray: #fcfcfd;
-$color-rice-flower: #e8ffdb;
-$color-silver: #b9b9b9;
-$color-silver-light: #f1f1f1f1;
-$color-royal-blue: #4470ec;
-$color-sugar-cane: #fbfff9;
-$color-tea-green: #c2ebaa;
-$color-border: #e5e8f5;
 $color-error: #f5222d;
-$color-link-hover: #244e0b;
 
 $form-width: 480px;
 $page-width: 480px;
@@ -30,41 +10,26 @@ $form-item-height: 48px;
 
 $spacer: 8px;
 
-$spacer-0: $spacer * 0; //0px
-$spacer-025: $spacer / 4; //2px
-$spacer-050: $spacer / 2; //4px
-$spacer-075: $spacer / 1.3333333; //6px
-$spacer-100: $spacer; //8px
-$spacer-125: $spacer * 1.25; //10px
-$spacer-150: $spacer * 1.5; //12px
-$spacer-175: $spacer * 1.75; //14px
-$spacer-200: $spacer * 2; //16px
-$spacer-225: $spacer * 2.25; //18px
-$spacer-250: $spacer * 2.5; //20px
-$spacer-275: $spacer * 2.75; //22px
-$spacer-325: $spacer * 3.25; //26px
-$spacer-350: $spacer * 3.5; //28px
-$spacer-375: $spacer * 3.75; //30px
-$spacer-400: $spacer * 4; //32px
-$spacer-450: $spacer * 4.5; //36px
-$spacer-500: $spacer * 5; //40px
-$spacer-525: $spacer * 5.25; //42px
-$spacer-550: $spacer * 5.5; //44px
+$spacer-0: $spacer * 0; // 0
+$spacer-050: $spacer * 0.5; // 4px
+$spacer-100: $spacer * 1; // 8px
+$spacer-150: $spacer * 1.5; // 12px
+$spacer-200: $spacer * 2; // 16px
+$spacer-250: $spacer * 2.5; // 20px
+$spacer-300: $spacer * 3; // 24px
+$spacer-350: $spacer * 3.5; // 28px
+$spacer-400: $spacer * 4; // 32px
+$spacer-500: $spacer * 5; // 40px
 
 $font-sizer: 8px;
 
-$font-sizer-0: $font-sizer * 0; //0px
-$font-sizer-025: $font-sizer / 4; //2px
-$font-sizer-050: $font-sizer / 2; //4px
-$font-sizer-100: $font-sizer; //8px
-$font-sizer-125: $font-sizer * 1.25; //10px
-$font-sizer-150: $font-sizer * 1.5; //12px
-$font-sizer-175: $font-sizer * 1.75; //14px
-$font-sizer-200: $font-sizer * 2; //16px
-$font-sizer-225: $font-sizer * 2.25; //18px
-$font-sizer-250: $font-sizer * 2.5; //20px
-$font-sizer-275: $font-sizer * 2.75; //22px
-$font-sizer-325: $font-sizer * 3.25; //30px
+$font-sizer-100: $font-sizer * 1; // 8px
+$font-sizer-150: $font-sizer * 1.5; // 12px
+$font-sizer-175: $font-sizer * 1.75; // 14px
+$font-sizer-200: $font-sizer * 2; // 16px
+$font-sizer-250: $font-sizer * 2.5; // 20px
+$font-sizer-300: $font-sizer * 3; // 24px
+$font-sizer-400: $font-sizer * 4; // 32px
 
 $border-radius: 8px;
 

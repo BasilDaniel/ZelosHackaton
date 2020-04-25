@@ -10,16 +10,16 @@
     }
     &_badges {
       & label {
-        margin: $spacer-0 $spacer-050;
+        margin: $spacer-0 4px;
       }
       .ant-radio-button-wrapper {
         border: 1px solid #d9d9d9;
         height: 40px;
         line-height: 100%;
         border-radius: 100px;
-        border: 1px solid $color-rice-flower !important;
-        background-color: $color-rice-flower;
-        color: $color-bilbao;
+        border: 1px solid grey !important;
+        background-color: grey;
+        color: green;
         box-shadow: none !important;
         outline: none !important;
         z-index: 0;
@@ -29,20 +29,20 @@
             family: 'Inter Regular';
             style: normal;
             weight: normal;
-            size: $font-sizer-200;
+            size: 16px;
           }
         }
         &:not(:first-child)::before {
           content: none;
         }
         &:hover {
-          border: 1px solid $color-bilbao;
+          border: 1px solid green;
         }
       }
 
       .ant-radio-button-wrapper-checked {
-        border: 1px solid $color-bilbao !important;
-        background-color: $color-bilbao;
+        border: 1px solid green !important;
+        background-color: green;
         box-shadow: none !important;
         outline: none !important;
         span {
@@ -51,18 +51,18 @@
       }
       &.form-radio_black {
         .ant-radio-button-wrapper {
-          background-color: $color-gallery;
-          border: 1px solid $color-gallery !important;
+          background-color: grey;
+          border: 1px solid grey !important;
         }
         .ant-radio-button-wrapper-checked {
-          background-color: $color-mine-shaft-dark;
-          border: 1px solid $color-mine-shaft-dark !important;
+          background-color: black;
+          border: 1px solid black !important;
           span {
-            color: $color-gallery !important;
+            color: grey !important;
           }
         }
         span {
-          color: $color-mine-shaft-dark !important;
+          color: black !important;
         }
       }
     }
@@ -82,9 +82,9 @@
         border: 1px solid #d9d9d9;
         height: 48px;
         line-height: 100%;
-        border: 1px solid $color-bilbao !important;
+        border: 1px solid green !important;
         background-color: $color-white;
-        color: $color-bilbao;
+        color: green;
         box-shadow: none !important;
         outline: none !important;
         z-index: 0;
@@ -94,20 +94,20 @@
             family: 'Inter Regular';
             style: normal;
             weight: normal;
-            size: $font-sizer-200;
+            size: 16px;
           }
         }
         &:not(:first-child)::before {
           content: none;
         }
         &:hover {
-          border: 1px solid $color-bilbao;
+          border: 1px solid green;
         }
       }
 
       .ant-radio-button-wrapper-checked {
-        border: 1px solid $color-bilbao !important;
-        background-color: $color-bilbao;
+        border: 1px solid green !important;
+        background-color: green;
         box-shadow: none !important;
         outline: none !important;
         span {
@@ -116,18 +116,18 @@
       }
       &.form-radio_black {
         .ant-radio-button-wrapper {
-          background-color: $color-gallery;
-          border: 1px solid $color-gallery !important;
+          background-color: grey;
+          border: 1px solid grey !important;
         }
         .ant-radio-button-wrapper-checked {
-          background-color: $color-mine-shaft-dark;
-          border: 1px solid $color-mine-shaft-dark !important;
+          background-color: black;
+          border: 1px solid black !important;
           span {
-            color: $color-gallery !important;
+            color: grey !important;
           }
         }
         span {
-          color: $color-mine-shaft-dark !important;
+          color: black !important;
         }
       }
     }
@@ -143,7 +143,7 @@
         line-height: 100%;
         border-radius: 100px;
         border: none !important;
-        color: $color-bilbao;
+        color: green;
         box-shadow: none !important;
         outline: none !important;
         z-index: 0;
@@ -155,7 +155,7 @@
           content: none;
         }
         & .ant-radio-button {
-          border: 1px solid $color-bilbao;
+          border: 1px solid green;
           border-radius: 50%;
           display: block;
           width: 20px;
@@ -170,7 +170,7 @@
               width: 10px;
               height: 10px;
               border-radius: 50%;
-              background-color: $color-bilbao;
+              background-color: green;
             }
           }
         }
@@ -178,7 +178,7 @@
           position: absolute;
           left: 43px;
           top: 3px;
-          color: $color-mine-shaft;
+          color: black;
         }
       }
     }

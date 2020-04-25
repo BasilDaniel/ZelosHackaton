@@ -29,7 +29,7 @@
       padding: $spacer-250 $spacer-500;
 
       @media (max-width: 767px) {
-        padding: $spacer-325 $spacer-200;
+        padding: $spacer-350 $spacer-200;
       }
     }
 
@@ -38,6 +38,11 @@
       height: 100vh;
       background-size: cover;
       background-position: 50%;
+
+      @media (max-width: 767px) {
+        width: 50%;
+        height: 50vh;
+      }
     }
   }
 }

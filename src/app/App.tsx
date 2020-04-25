@@ -1,16 +1,14 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { UIErrorHandler } from 'common/components/UIErrorHandler';
-import { LandingPage } from 'app/pages/LandingPage';
 import { communicationAuth, IAuthConnectedProps } from 'entities/Auth/Auth.communication';
-import ProtectedRoute from 'entities/Auth/components/ProtectedRoute';
 import Login from 'entities/Auth/components/Login';
 import NotFound from 'entities/Auth/components/NotFound';
+import RoleLayoutSwitch from './pages/RoleLayoutSwitch';
 import { MoreInfoPage } from 'app/pages/MoreInfoPage';
 
 export enum ERoutes {
   Login = 'login',
-  SignUp = 'signup',
   ApplicationInfo = 'application-info',
   MoreInfo = 'more-info',
   AdminBO = 'admin-bo'
@@ -23,9 +21,8 @@ class App extends React.Component<IAuthConnectedProps> {
         <Switch>
           <Route path={`/${ERoutes.Login}`} component={Login} exact />
           <Route path={`/${ERoutes.MoreInfo}`} component={MoreInfoPage} exact/>
-          <Route path="/" component={LandingPage} />
+          <Route path="/" component={RoleLayoutSwitch} exact />
           <Route path="*" component={NotFound} />
-          <ProtectedRoute path={`/${ERoutes.AdminBO}`} component={() => <></>} /> {/* Path and component are dummy*/}
         </Switch>
       </UIErrorHandler>
     );

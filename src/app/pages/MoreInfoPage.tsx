@@ -1,6 +1,7 @@
 import React from 'react';
-import { LayoutBasic } from 'common/components/LayoutBasic';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
+
+import { LayoutBasic } from 'common/components/LayoutBasic';
 import { ERoutes } from 'app/App';
 
 class MoreInfoPageComponent extends React.Component<RouteComponentProps> {

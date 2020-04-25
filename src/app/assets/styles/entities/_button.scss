@@ -1,4 +1,4 @@
-@import '../abstract/variables';
+@import 'abstract/variables';
 
 .button {
   width: 120px;
@@ -28,7 +28,7 @@
   }
 
   &__red {
-    background: green;
+    background: red;
     color: white;
   }
 }
