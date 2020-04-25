@@ -11,6 +11,7 @@ import { PersonInfoForm } from 'entities/Application/components/PersonInfoForm';
 import { communicationApplication, IApplicationConnectedProps } from 'entities/Application/Application.communication';
 import { WorkspaceInfoForm } from 'entities/Application/components/WorkspaceInfoForm';
 import { IWorkspaceModelTo, IWorkspaceValues } from 'entities/Application/Application.models';
+import { ThankYouMessage } from './ThankYouMessage';
 
 type AllProps = FormComponentProps & IApplicationConnectedProps & RouteComponentProps;
 
@@ -21,10 +22,17 @@ class ApplicationPage extends React.Component<AllProps> {
   }
   render() {
     const { form, workspacesModel } = this.props;
-    const { loading, errors } = workspacesModel;
+    const { data, loading, errors } = workspacesModel;
     let isNextStep = false;
     if (errors && errors.data && errors.data.errors) {
       isNextStep = !errors.data.errors.some(item => item.param === 'application');
+    }
+    if (data) {
+      return (
+        <LayoutBasic>
+          <ThankYouMessage />
+        </LayoutBasic>
+      );
     }
 
     return (
