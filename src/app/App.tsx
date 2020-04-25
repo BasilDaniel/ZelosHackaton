@@ -6,6 +6,7 @@ import { communicationAuth, IAuthConnectedProps } from 'entities/Auth/Auth.commu
 import ProtectedRoute from 'entities/Auth/components/ProtectedRoute';
 import Login from 'entities/Auth/components/Login';
 import NotFound from 'entities/Auth/components/NotFound';
+import { MoreInfoPage } from 'app/pages/MoreInfoPage';
 
 export enum ERoutes {
   Login = 'login',
@@ -20,6 +21,7 @@ class App extends React.Component<IAuthConnectedProps> {
       <UIErrorHandler>
         <Switch>
           <Route path={`/${ERoutes.Login}`} component={Login} exact />
+          <Route path={`/${ERoutes.MoreInfo}`} component={MoreInfoPage} />
           <Route path="/" component={LandingPage} />
           <Route path="*" component={NotFound} />
           <ProtectedRoute path="/admin" component={() => <></>} /> {/* Path and component are dummy*/}
