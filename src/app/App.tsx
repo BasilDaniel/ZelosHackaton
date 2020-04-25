@@ -12,7 +12,8 @@ export enum ERoutes {
   Login = 'login',
   SignUp = 'signup',
   ApplicationInfo = 'application-info',
-  MoreInfo = 'more-info'
+  MoreInfo = 'more-info',
+  AdminBO = 'admin-bo'
 }
 
 class App extends React.Component<IAuthConnectedProps> {
@@ -21,10 +22,10 @@ class App extends React.Component<IAuthConnectedProps> {
       <UIErrorHandler>
         <Switch>
           <Route path={`/${ERoutes.Login}`} component={Login} exact />
-          <Route path={`/${ERoutes.MoreInfo}`} component={MoreInfoPage} />
+          <Route path={`/${ERoutes.MoreInfo}`} component={MoreInfoPage} exact/>
           <Route path="/" component={LandingPage} />
           <Route path="*" component={NotFound} />
-          <ProtectedRoute path="/admin" component={() => <></>} /> {/* Path and component are dummy*/}
+          <ProtectedRoute path={`/${ERoutes.AdminBO}`} component={() => <></>} /> {/* Path and component are dummy*/}
         </Switch>
       </UIErrorHandler>
     );
