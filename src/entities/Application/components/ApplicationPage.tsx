@@ -12,6 +12,7 @@ import { communicationApplication, IApplicationConnectedProps } from 'entities/A
 import { WorkspaceInfoForm } from 'entities/Application/components/WorkspaceInfoForm';
 import { IWorkspaceModelTo, IWorkspaceValues } from 'entities/Application/Application.models';
 import { ThankYouMessage } from './ThankYouMessage';
+import { errorsApplicaionMapper } from 'common/helpers/errors.helper';
 
 type AllProps = FormComponentProps & IApplicationConnectedProps & RouteComponentProps;
 
@@ -21,11 +22,12 @@ class ApplicationPage extends React.Component<AllProps> {
     clearWorkspacesAppModel();
   }
   render() {
-    const { form, workspacesAppModel } = this.props;
-    const { data, loading, errors } = workspacesAppModel;
+    const { form, workspacesAppModel, workspacesWsZModel } = this.props;
+    const { loading, errors } = workspacesAppModel;
+    const { data, loading: wsZLoading } = workspacesWsZModel;
     let isNextStep = false;
     if (errors && errors.data && errors.data.errors) {
-      isNextStep = !errors.data.errors.some(item => !!item.param.startsWith('application'));
+      isNextStep = !Object.keys(errors.data.errors).some(item => !!item.startsWith('application'));
     }
     if (data) {
       return (
@@ -37,7 +39,7 @@ class ApplicationPage extends React.Component<AllProps> {
 
     return (
       <LayoutBasic>
-        {loading && <Spiner size="large" align="hover" />}
+        {(loading || wsZLoading) && <Spiner size="large" align="hover" />}
         {!isNextStep ? (
           <Form onSubmit={this.handleSubmit}>
             <PersonInfoForm form={form} />
@@ -74,11 +76,11 @@ class ApplicationPage extends React.Component<AllProps> {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { form, addWorkspacesAppModel, workspacesAppModel } = this.props;
+    const { form, addWorkspacesAppModel, addWorkspacesWsZModel, workspacesAppModel } = this.props;
     const { params, errors } = workspacesAppModel;
     let isNextStep = false;
     if (errors && errors.data && errors.data.errors) {
-      isNextStep = !errors.data.errors.some(item => !!item.param.startsWith('application'));
+      isNextStep = !Object.keys(errors.data.errors).some(item => !!item.startsWith('application'));
     }
 
     form.validateFieldsAndScroll((err, values: IWorkspaceValues) => {
@@ -95,7 +97,11 @@ class ApplicationPage extends React.Component<AllProps> {
         } else {
           model = { application: { ...values } };
         }
-        addWorkspacesAppModel(model);
+        if (isNextStep) {
+          addWorkspacesWsZModel(model);
+        } else {
+          addWorkspacesAppModel(model);
+        }
       }
     });
   };
@@ -104,17 +110,39 @@ export default communicationApplication.injector(
   withRouter(
     Form.create({
       mapPropsToFields(props: AllProps) {
-        const { workspacesAppModel } = props;
-        const { params, errors } = workspacesAppModel;
-        const data = errors && errors.data;
+        const { workspacesAppModel, workspacesWsZModel } = props;
+        const { params: appParams, errors: appErrors } = workspacesAppModel;
+        const { params: wsZParams, errors: wsZErrors } = workspacesWsZModel;
+        let data;
         let value = {};
-        if (params) {
+        let isNextStep = false;
+        if (appErrors && appErrors.data && appErrors.data.errors) {
+          isNextStep = !Object.keys(appErrors.data.errors).some(item => !!item.startsWith('application'));
+        }
+        if (appErrors && appErrors.data && !isNextStep) {
+          const dataErrors = appErrors && errorsApplicaionMapper(appErrors.data.errors);
+          data = { ...appErrors.data, errors: dataErrors };
+        }
+        if (wsZErrors && wsZErrors.data && isNextStep) {
+          const dataErrors = wsZErrors && errorsApplicaionMapper(wsZErrors.data.errors);
+          data = { ...wsZErrors.data, errors: dataErrors };
+        }
+        if (appParams && !isNextStep) {
           value = {
-            ...params.workspace,
-            ...params.zelos,
-            ...params.application,
-            workspaceName: params.workspace?.name,
-            zelosEmail: params.zelos?.email
+            ...appParams.workspace,
+            ...appParams.zelos,
+            ...appParams.application,
+            workspaceName: appParams.workspace?.name,
+            zelosEmail: appParams.zelos?.email
+          };
+        }
+        if (wsZParams && isNextStep) {
+          value = {
+            ...wsZParams.workspace,
+            ...wsZParams.zelos,
+            ...wsZParams.application,
+            workspaceName: wsZParams.workspace?.name,
+            zelosEmail: wsZParams.zelos?.email
           };
         }
 

@@ -14,10 +14,12 @@ const namespace = 'workspaces';
 
 export interface IApplicationConnectedProps {
   workspacesAppModel: StoreBranch<IWorkspaceModelFrom, IWorkspaceModelTo, any>;
+  workspacesWsZModel: StoreBranch<IWorkspaceModelFrom, IWorkspaceModelTo, any>;
   workspacesWsModel: StoreBranch<IWorkspaceModelFrom, IWorkspaceModelTo, any>;
   workspacesAppCollection: StoreBranch<IWorkspaceCollection>;
   workspacesWsCollection: StoreBranch<IWorkspaceCollection>;
   addWorkspacesAppModel(model: IWorkspaceModelTo): void;
+  addWorkspacesWsZModel(model: IWorkspaceModelTo): void;
   getWorkspacesAppModel(id: string): void;
   getWorkspacesWsModel(id: string): void;
   getWorkspacesAppCollection(params: IWorkspaceCollectionParams): void;
@@ -41,6 +43,7 @@ const appModelApiProvider = [
     }
   })
 ];
+const appWsZModelApiProvider = [new APIProvider(actionsTypes.add, applicationTransport.addApplication)];
 
 const wsModelApiProvider = [
   new APIProvider(actionsTypes.get, workspaceTransport.getWorkspace),
@@ -53,6 +56,7 @@ const wsModelApiProvider = [
 
 const branches = [
   new Branch('appModel', appModelApiProvider),
+  new Branch('wsZModel', appWsZModelApiProvider),
   new Branch('wsModel', wsModelApiProvider),
   new Branch('appCollection', appCollectionApiProvider),
   new Branch('wsCollection', wsCollectionApiProvider)
