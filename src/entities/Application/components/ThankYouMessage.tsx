@@ -7,8 +7,10 @@ export class ThankYouMessage extends React.Component {
         <div>
           <h1>Thank you</h1>
           <p>
-            We have receive your request to create a workspace and will deal with your application ASAP. We'll we mail you the
-            confirmation soon. If you want to get in touch with us ...
+          We have received your request to create a Community Helpdesk account and will confirm and launch your application ASAP. Keep an eye on your email inbox!
+          </p>
+          <p>
+          If you have any additional questions, please get in touch with us via ailan@getzelos.com
           </p>
         </div>
       </div>
