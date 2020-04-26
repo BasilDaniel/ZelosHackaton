@@ -66,7 +66,9 @@ class ApplicationItemComponent extends React.Component<AllProps, IComponentState
         <span onClick={this.goBack} className="back-button">
           <Icon type="arrow-left" />
         </span>
-        <span>Application</span>
+        <span>
+          {type && type[0].toUpperCase() + type.slice(1)} {status}
+        </span>
       </Row>
     );
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Tabs } from 'antd';
+import { Table, Tabs, Tag } from 'antd';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import LogoutButton from 'common/components/LogoutButton';
 import { ERoutes } from 'app/App';
@@ -52,7 +52,7 @@ class MainLayoutAdminComponent extends React.Component<AllProps> {
         title: 'Status',
         dataIndex: 'status',
         render: text => {
-          return text[0].toUpperCase() + text.slice(1);
+          return text === EEntityStatus.Enabled ? <Tag color="green">Running</Tag> : text[0].toUpperCase() + text.slice(1);
         }
       },
       {
