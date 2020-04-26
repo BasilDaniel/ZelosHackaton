@@ -101,14 +101,24 @@ class ApplicationItemComponent extends React.Component<AllProps, IComponentState
   getButtons = (status: EEntityStatus) => {
     switch (status) {
       case EEntityStatus.Pending:
+        const type = new URL(window.location.href).searchParams.get('type');
+
         return (
           <ButtonWrapper align="right">
-            <Button type="danger" onClick={() => this.showModal('Confirm rejecting', EAppActionTypes.Reject)}>
-              Reject
-            </Button>
-            <Button type="primary" onClick={() => this.showModal('Create a workspace?', EAppActionTypes.Approve)}>
-              Approve
-            </Button>
+            {type === EEntityType.Application ? (
+              <>
+                <Button type="danger" onClick={() => this.showModal('Confirm rejecting', EAppActionTypes.Reject)}>
+                  Reject
+                </Button>
+                <Button type="primary" onClick={() => this.showModal('Create a workspace?', EAppActionTypes.Approve)}>
+                  Approve
+                </Button>
+              </>
+            ) : (
+              <Button type="primary" onClick={() => this.showModal('Enable workspace?', EAppActionTypes.Enable)}>
+                Enable
+              </Button>
+            )}
           </ButtonWrapper>
         );
       case EEntityStatus.Enabled:
