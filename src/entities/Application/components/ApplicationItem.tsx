@@ -1,6 +1,7 @@
 import React from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { Button, Card, Col, Icon, Row } from 'antd';
+import he from 'he';
 import { Spiner } from 'common/components/Spiner';
 import { ButtonWrapper } from 'common/components/ButtonWrapper';
 import { InfoItem } from 'entities/Application/components/InfoItem';
@@ -91,7 +92,7 @@ class ApplicationItemComponent extends React.Component<AllProps, IComponentState
                 <InfoItem fieldName="Email address" fieldValue={email} />
               </Col>
               <Col sm={12} xs={24}>
-                <InfoItem fieldName="Website" fieldValue={website} />
+                <InfoItem fieldName="Website" fieldValue={he.decode(website)} link />
                 <InfoItem fieldName="About cause" fieldValue={details} />
                 <InfoItem fieldName="Domain" fieldValue={domain} />
               </Col>
@@ -99,7 +100,13 @@ class ApplicationItemComponent extends React.Component<AllProps, IComponentState
             {this.getButtons(status)}
           </Card>
         </Row>
-        <UpdateAppModal title={modalTitle} modalAction={modalAction} modalVisible={modalVisible} onCancel={this.cancel} loading={loading}/>
+        <UpdateAppModal
+          title={modalTitle}
+          modalAction={modalAction}
+          modalVisible={modalVisible}
+          onCancel={this.cancel}
+          loading={loading}
+        />
       </>
     );
   }

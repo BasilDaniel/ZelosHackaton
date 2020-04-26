@@ -20,12 +20,16 @@ class LandingPageComponent extends React.Component<RouteComponentProps> {
 
             <p>
               Connect Community Helpdesk with your{' '}
-              <a href="https://www.getzelos.com/" target="_blank">
+              <a href="https://www.getzelos.com/" target="_blank" rel="noopener noreferrer">
                 Zelos Volunteer Management
               </a>{' '}
               account to be able to send notifications and delegate tasks automatically to your volunteers. Find more information
               about the setup process and detailed instructions{' '}
-              <a href="https://www.getzelos.com/how-to-set-up-community-helpdesk-for-zelos/" target="_blank">
+              <a
+                href="https://www.getzelos.com/how-to-set-up-community-helpdesk-for-zelos/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 here
               </a>
               !
