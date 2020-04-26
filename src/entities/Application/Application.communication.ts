@@ -17,7 +17,7 @@ export interface IApplicationConnectedProps {
   workspacesWsModel: StoreBranch<IWorkspaceModelFrom, IWorkspaceModelTo, any>;
   workspacesAppCollection: StoreBranch<IWorkspaceCollection>;
   workspacesWsCollection: StoreBranch<IWorkspaceCollection>;
-  addWorkspacesModel(model: IWorkspaceModelTo): void;
+  addWorkspacesAppModel(model: IWorkspaceModelTo): void;
   getWorkspacesAppModel(id: string): void;
   getWorkspacesWsModel(id: string): void;
   getWorkspacesAppCollection(params: IWorkspaceCollectionParams): void;

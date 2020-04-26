@@ -27,11 +27,11 @@ export interface IApplication {
 }
 export interface IWorkspace {
   domain: string;
-  workspaceName: string;
+  name: string;
 }
 export interface IZelos {
   subdomain: string;
-  zelosEmail: string;
+  email: string;
   password: string;
 }
 
@@ -46,7 +46,10 @@ export interface IWorkspaceModelFrom {
   application: IApplication;
   workspace: IWorkspace;
 }
-export interface IWorkspaceValues extends IApplication, IWorkspace, IZelos {}
+export interface IWorkspaceValues extends IApplication, IWorkspace, IZelos {
+  workspaceName: string;
+  zelosEmail: string;
+}
 
 export interface IUpdateWorkspaceModelTo {
   id: string;

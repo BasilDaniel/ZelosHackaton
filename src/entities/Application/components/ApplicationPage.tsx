@@ -25,7 +25,7 @@ class ApplicationPage extends React.Component<AllProps> {
     const { data, loading, errors } = workspacesAppModel;
     let isNextStep = false;
     if (errors && errors.data && errors.data.errors) {
-      isNextStep = !errors.data.errors.some(item => item.param === 'application');
+      isNextStep = !errors.data.errors.some(item => !!item.param.startsWith('application'));
     }
     if (data) {
       return (
@@ -40,7 +40,7 @@ class ApplicationPage extends React.Component<AllProps> {
         {loading && <Spiner size="large" align="hover" />}
         {!isNextStep ? (
           <Form onSubmit={this.handleSubmit}>
-            <PersonInfoForm form={form}></PersonInfoForm>
+            <PersonInfoForm form={form} />
             <ButtonWrapper align="right">
               <Button className="button" onClick={this.goBack}>
                 Back
@@ -74,22 +74,28 @@ class ApplicationPage extends React.Component<AllProps> {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { form, addWorkspacesModel, workspacesAppModel } = this.props;
-    const { params } = workspacesAppModel;
+    const { form, addWorkspacesAppModel, workspacesAppModel } = this.props;
+    const { params, errors } = workspacesAppModel;
+    let isNextStep = false;
+    if (errors && errors.data && errors.data.errors) {
+      isNextStep = !errors.data.errors.some(item => !!item.param.startsWith('application'));
+    }
 
     form.validateFieldsAndScroll((err, values: IWorkspaceValues) => {
       if (!err) {
         console.log(values);
-        let model: IWorkspaceModelTo = { application: { ...values } };
-        if (params) {
+        let model: IWorkspaceModelTo;
+        if (isNextStep && params) {
           const { application } = params;
           model = {
             application: application,
-            workspace: { domain: values.domain, workspaceName: values.workspaceName },
-            zelos: { subdomain: values.subdomain, zelosEmail: values.zelosEmail, password: values.password }
+            workspace: { domain: values.domain, name: values.workspaceName },
+            zelos: { subdomain: values.subdomain, email: values.zelosEmail, password: values.password }
           };
+        } else {
+          model = { application: { ...values } };
         }
-        addWorkspacesModel(model);
+        addWorkspacesAppModel(model);
       }
     });
   };
@@ -104,9 +110,11 @@ export default communicationApplication.injector(
         let value = {};
         if (params) {
           value = {
-            ...params.application,
             ...params.workspace,
-            ...params.zelos
+            ...params.zelos,
+            ...params.application,
+            workspaceName: params.workspace?.name,
+            zelosEmail: params.zelos?.email
           };
         }
 
