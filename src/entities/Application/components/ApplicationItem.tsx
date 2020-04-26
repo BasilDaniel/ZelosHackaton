@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { Button, Card, Col, Icon, Row } from 'antd';
 import { Spiner } from 'common/components/Spiner';
 import { ButtonWrapper } from 'common/components/ButtonWrapper';
@@ -11,16 +11,18 @@ import NotFound from 'entities/Auth/components/NotFound';
 import { EWorkspaceStatus } from 'entities/Application/Application.models';
 
 interface IComponentState {
-  approveModalVisible: boolean;
-  rejectModalVisible: boolean;
+  modalVisible: boolean;
+  modalTitle?: string;
+  modalAction: EAppActionTypes | null;
 }
 
 type AllProps = IApplicationConnectedProps & RouteComponentProps<{ id: string }>;
 
 class ApplicationItemComponent extends React.Component<AllProps, IComponentState> {
   state = {
-    approveModalVisible: false,
-    rejectModalVisible: false
+    modalVisible: false,
+    modalTitle: '',
+    modalAction: null
   };
 
   componentDidMount(): void {
@@ -31,7 +33,7 @@ class ApplicationItemComponent extends React.Component<AllProps, IComponentState
   }
 
   render() {
-    const { approveModalVisible, rejectModalVisible } = this.state;
+    const { modalVisible, modalTitle, modalAction } = this.state;
     const { workspacesModel } = this.props;
     const { data: workspaceData, loading } = workspacesModel;
 
@@ -76,33 +78,45 @@ class ApplicationItemComponent extends React.Component<AllProps, IComponentState
                 <InfoItem fieldName="Domain" fieldValue={domain} />
               </Col>
             </Row>
-            {status === EWorkspaceStatus.Pending && (
-              <ButtonWrapper align="right">
-                <Button type="danger" onClick={this.showRejectModal}>
-                  Reject
-                </Button>
-                <Button type="primary" onClick={this.showApproveModal}>
-                  Approve
-                </Button>
-              </ButtonWrapper>
-            )}
+            {this.getButtons(status)}
           </Card>
         </Row>
-        <UpdateAppModal
-          title="Create a workspace?"
-          modalAction={EAppActionTypes.Enable}
-          modalVisible={approveModalVisible}
-          onCancel={this.cancel}
-        />
-        <UpdateAppModal
-          title="Confirm rejecting"
-          modalAction={EAppActionTypes.Disable}
-          modalVisible={rejectModalVisible}
-          onCancel={this.cancel}
-        />
+        <UpdateAppModal title={modalTitle} modalAction={modalAction} modalVisible={modalVisible} onCancel={this.cancel} />
       </>
     );
   }
+
+  getButtons = (status: EWorkspaceStatus) => {
+    switch (status) {
+      case EWorkspaceStatus.Pending:
+        return (
+          <ButtonWrapper align="right">
+            <Button type="danger" onClick={() => this.showModal('Confirm rejecting', EAppActionTypes.Reject)}>
+              Reject
+            </Button>
+            <Button type="primary" onClick={() => this.showModal('Create a workspace?', EAppActionTypes.Enable)}>
+              Approve
+            </Button>
+          </ButtonWrapper>
+        );
+      case EWorkspaceStatus.Enabled:
+        return (
+          <ButtonWrapper align="right">
+            <Button type="danger" onClick={() => this.showModal('Disable workspace?', EAppActionTypes.Disable)}>
+              Disable
+            </Button>
+          </ButtonWrapper>
+        );
+      case EWorkspaceStatus.Disabled:
+        return (
+          <ButtonWrapper align="right">
+            <Button type="primary" onClick={() => this.showModal('Enable workspace?', EAppActionTypes.Enable)}>
+              Enable
+            </Button>
+          </ButtonWrapper>
+        );
+    }
+  };
 
   goBack = () => {
     const { history } = this.props;
@@ -110,15 +124,11 @@ class ApplicationItemComponent extends React.Component<AllProps, IComponentState
   };
 
   cancel = () => {
-    this.setState({ approveModalVisible: false, rejectModalVisible: false });
+    this.setState({ modalVisible: false });
   };
 
-  showApproveModal = () => {
-    this.setState(state => ({ approveModalVisible: !state.approveModalVisible }));
-  };
-
-  showRejectModal = () => {
-    this.setState(state => ({ rejectModalVisible: !state.rejectModalVisible }));
+  showModal = (modalTitle: string, modalAction: EAppActionTypes) => {
+    this.setState(state => ({ modalVisible: !state.modalVisible, modalTitle, modalAction }));
   };
 }
 

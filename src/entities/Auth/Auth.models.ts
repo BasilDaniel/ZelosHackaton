@@ -42,5 +42,6 @@ export interface IAuthRegistrationModel extends IErrorReturnData {
 
 export enum EAppActionTypes {
   Enable = 'enable',
-  Disable = 'disable'
+  Disable = 'disable',
+  Reject = 'reject'
 }

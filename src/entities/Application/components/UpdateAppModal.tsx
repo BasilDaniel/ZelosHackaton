@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Modal } from 'antd';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import TextArea from 'antd/es/input/TextArea';
 
 import { communicationApplication, IApplicationConnectedProps } from 'entities/Application/Application.communication';
@@ -9,7 +9,7 @@ import { ButtonWrapper } from 'common/components/ButtonWrapper';
 
 interface IComponentProps {
   title: string;
-  modalAction: EAppActionTypes;
+  modalAction: EAppActionTypes | null;
   modalVisible: boolean;
   onCancel: () => void;
 }
@@ -42,31 +42,78 @@ class UpdateAppModalComponent extends React.Component<AllProps, IComponentState>
           <Button onClick={onCancel} loading={loading} disabled={loading}>
             Cancel
           </Button>
-          {reject ? (
-            <Button type="danger" htmlType="submit" onClick={this.updateApp} loading={loading} disabled={loading}>
-              Reject
-            </Button>
-          ) : (
-            <Button type="primary" htmlType="submit" onClick={this.updateApp} loading={loading} disabled={loading}>
-              Approve
-            </Button>
-          )}
+          {this.getActionButton()}
         </ButtonWrapper>
       </Modal>
     );
   }
 
+  getActionButton = () => {
+    const { workspacesModel, modalAction } = this.props;
+    const { loading } = workspacesModel;
+
+    switch (modalAction) {
+      case EAppActionTypes.Enable:
+        return (
+          <Button
+            type="primary"
+            htmlType="submit"
+            onClick={() => this.updateWorkspace(EAppActionTypes.Enable)}
+            loading={loading}
+            disabled={loading}
+          >
+            Enable
+          </Button>
+        );
+      case EAppActionTypes.Disable:
+        return (
+          <Button
+            type="danger"
+            htmlType="submit"
+            onClick={() => this.updateWorkspace(EAppActionTypes.Disable)}
+            loading={loading}
+            disabled={loading}
+          >
+            Disable
+          </Button>
+        );
+      case EAppActionTypes.Reject:
+        return (
+          <Button
+            type="primary"
+            htmlType="submit"
+            onClick={() => this.updateApp(EAppActionTypes.Reject)}
+            loading={loading}
+            disabled={loading}
+          >
+            Reject
+          </Button>
+        );
+      default:
+        return null;
+    }
+  };
+
   onTextChange = e => {
     this.setState({ text: e.target.value });
   };
 
-  updateApp = () => {
-    const { text } = this.state;
-    const { modalAction, workspacesModel, updateWorkspacesModel } = this.props;
+  updateWorkspace = (modalAction: EAppActionTypes) => {
+    const { workspacesModel, updateWorkspacesModel } = this.props;
     const id = workspacesModel.data?.id;
 
     if (id) {
-      updateWorkspacesModel({ id, action: modalAction, note: text });
+      modalAction !== EAppActionTypes.Reject && updateWorkspacesModel({ id, action: modalAction });
+    }
+  };
+
+  updateApp = (modalAction: EAppActionTypes) => {
+    const { text } = this.state;
+    const { workspacesModel, updateWorkspacesModel } = this.props;
+    const id = workspacesModel.data?.id;
+
+    if (id) {
+      modalAction !== EAppActionTypes.Reject && updateWorkspacesModel({ id, action: modalAction, note: text });
     }
   };
 }
