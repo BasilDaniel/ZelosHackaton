@@ -47,6 +47,13 @@ class MainLayoutAdminComponent extends React.Component<AllProps> {
         dataIndex: 'workspace.domain'
       },
       {
+        title: 'Status',
+        dataIndex: 'status',
+        render: text => {
+          return text[0].toUpperCase() + text.slice(1);
+        }
+      },
+      {
         title: '',
         render: record => (
           <div onClick={() => this.goToAppItem(record)} className="link-to-item">
