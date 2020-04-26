@@ -39,6 +39,12 @@ class ApplicationItemComponent extends React.Component<AllProps, IComponentState
     }
   }
 
+  componentWillUnmount(): void {
+    const { clearWorkspacesAppModel, clearWorkspacesWsModel } = this.props;
+    clearWorkspacesAppModel();
+    clearWorkspacesWsModel();
+  }
+
   render() {
     const { modalVisible, modalTitle, modalAction } = this.state;
     const { workspacesAppModel, workspacesWsModel } = this.props;
@@ -93,7 +99,7 @@ class ApplicationItemComponent extends React.Component<AllProps, IComponentState
             {this.getButtons(status)}
           </Card>
         </Row>
-        <UpdateAppModal title={modalTitle} modalAction={modalAction} modalVisible={modalVisible} onCancel={this.cancel} />
+        <UpdateAppModal title={modalTitle} modalAction={modalAction} modalVisible={modalVisible} onCancel={this.cancel} loading={loading}/>
       </>
     );
   }

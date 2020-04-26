@@ -29,14 +29,41 @@ export interface IApplicationConnectedProps {
   clearWorkspacesWsModel(): void;
 }
 
-const appCollectionApiProvider = [new APIProvider(actionsTypes.get, applicationTransport.getApplications)];
+const appCollectionApiProvider = [
+  new APIProvider(actionsTypes.get, applicationTransport.getApplications, {
+    preRequestDataMapper: function(
+      response: IWorkspaceCollection | null,
+      payload: IWorkspaceCollectionParams,
+      branchState: StoreBranch<IWorkspaceCollection, IWorkspaceCollectionParams>
+    ) {
+      return branchState.data;
+    }
+  })
+];
 
-const wsCollectionApiProvider = [new APIProvider(actionsTypes.get, workspaceTransport.getWorkspaces)];
+const wsCollectionApiProvider = [
+  new APIProvider(actionsTypes.get, workspaceTransport.getWorkspaces, {
+    preRequestDataMapper: function(
+      response: IWorkspaceCollection | null,
+      payload: IWorkspaceCollectionParams,
+      branchState: StoreBranch<IWorkspaceCollection, IWorkspaceCollectionParams>
+    ) {
+      return branchState.data;
+    }
+  })
+];
 
 const appModelApiProvider = [
   new APIProvider(actionsTypes.add, applicationTransport.addApplication),
   new APIProvider(actionsTypes.get, applicationTransport.getApplication),
   new APIProvider(actionsTypes.update, applicationTransport.updateApplication, {
+    preRequestDataMapper: function(
+      response: IWorkspaceModelFrom | null,
+      payload: IUpdateWorkspaceModelTo,
+      branchState: StoreBranch<IWorkspaceModelFrom, IUpdateWorkspaceModelTo>
+    ) {
+      return branchState.data;
+    },
     postFailHook: function*() {
       message.error('Error!', 3);
       yield put(goBack());
@@ -51,6 +78,13 @@ const appModelApiProvider = [
 const wsModelApiProvider = [
   new APIProvider(actionsTypes.get, workspaceTransport.getWorkspace),
   new APIProvider(actionsTypes.update, workspaceTransport.updateWorkspace, {
+    preRequestDataMapper: function(
+      response: IWorkspaceModelFrom | null,
+      payload: IUpdateWorkspaceModelTo,
+      branchState: StoreBranch<IWorkspaceModelFrom, IUpdateWorkspaceModelTo>
+    ) {
+      return branchState.data;
+    },
     postFailHook: function*() {
       message.error('Error!', 3);
       yield put(goBack());

@@ -12,6 +12,7 @@ interface IComponentProps {
   modalAction: EAppActionTypes | null;
   modalVisible: boolean;
   onCancel: () => void;
+  loading: boolean;
 }
 
 interface IComponentState {
@@ -26,8 +27,7 @@ class UpdateAppModalComponent extends React.Component<AllProps, IComponentState>
   };
 
   render() {
-    const { onCancel, modalVisible, workspacesAppModel, title, modalAction } = this.props;
-    const { loading } = workspacesAppModel;
+    const { onCancel, modalVisible, title, modalAction, loading } = this.props;
     const reject = modalAction === EAppActionTypes.Reject;
 
     return (
@@ -39,7 +39,7 @@ class UpdateAppModalComponent extends React.Component<AllProps, IComponentState>
           </>
         )}
         <ButtonWrapper align="right">
-          <Button onClick={onCancel} loading={loading} disabled={loading}>
+          <Button onClick={onCancel} disabled={loading}>
             Cancel
           </Button>
           {this.getActionButton()}
@@ -49,8 +49,7 @@ class UpdateAppModalComponent extends React.Component<AllProps, IComponentState>
   }
 
   getActionButton = () => {
-    const { workspacesAppModel, modalAction } = this.props;
-    const { loading } = workspacesAppModel;
+    const { modalAction, loading } = this.props;
 
     switch (modalAction) {
       case EAppActionTypes.Enable:
