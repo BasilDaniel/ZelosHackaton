@@ -3,6 +3,15 @@ export enum EWorkspaceStatus {
   Disabled = 'disabled',
   Pending = 'pending'
 }
+export enum EAppStatus {
+  Approved = 'enabled',
+  Rejected = 'disabled',
+  Pending = 'pending'
+}
+export enum EAdminTabs {
+  Applications = 'applications',
+  Workspaces = 'workspaces'
+}
 export interface IApplication {
   organization: string;
   country: string;
@@ -44,7 +53,7 @@ export interface IUpdateWorkspaceModelTo {
 export interface IWorkspaceCollectionParams {
   offset?: number;
   limit?: number;
-  status: string;
+  status?: string;
 }
 
 export interface IWorkspaceMeta {

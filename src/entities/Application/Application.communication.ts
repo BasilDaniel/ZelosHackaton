@@ -8,21 +8,26 @@ import {
   IWorkspaceCollection,
   IWorkspaceCollectionParams
 } from './Application.models';
-import { applicationTransport } from './Application.transport';
+import { applicationTransport, workspaceTransport } from './Application.transport';
 
 const namespace = 'workspaces';
 
 export interface IApplicationConnectedProps {
   workspacesModel: StoreBranch<IWorkspaceModelFrom, IWorkspaceModelTo, any>;
-  workspacesCollection: StoreBranch<IWorkspaceCollection>;
+  workspacesAppCollection: StoreBranch<IWorkspaceCollection>;
+  workspacesWsCollection: StoreBranch<IWorkspaceCollection>;
   addWorkspacesModel(model: IWorkspaceModelTo): void;
   getWorkspacesModel(id: string): void;
-  getWorkspacesCollection(params: IWorkspaceCollectionParams): void;
+  getWorkspacesAppCollection(params: IWorkspaceCollectionParams): void;
+  getWorkspacesWsCollection(params: IWorkspaceCollectionParams): void;
   updateWorkspacesModel(params: IUpdateWorkspaceModelTo): void;
   clearWorkspacesModel(): void;
 }
 
-const collectionApiProvider = [new APIProvider(actionsTypes.get, applicationTransport.getApplications)];
+const appCollectionApiProvider = [new APIProvider(actionsTypes.get, applicationTransport.getApplications)];
+
+const wsCollectionApiProvider = [new APIProvider(actionsTypes.get, workspaceTransport.getWorkspaces)];
+
 const modelApiProvider = [
   new APIProvider(actionsTypes.add, applicationTransport.addApplication),
   new APIProvider(actionsTypes.get, applicationTransport.getApplication),
@@ -30,10 +35,20 @@ const modelApiProvider = [
     postSuccessHook: function*() {
       yield put(push('/'));
     }
+  }),
+  new APIProvider(actionsTypes.get, workspaceTransport.getWorkspace),
+  new APIProvider(actionsTypes.update, workspaceTransport.updateWorkspace, {
+    postSuccessHook: function*() {
+      yield put(push('/'));
+    }
   })
 ];
 
-const branches = [new Branch('model', modelApiProvider), new Branch('collection', collectionApiProvider)];
+const branches = [
+  new Branch('model', modelApiProvider),
+  new Branch('appCollection', appCollectionApiProvider),
+  new Branch('wsCollection', wsCollectionApiProvider)
+];
 
 const strategy = new BaseStrategy({
   namespace,

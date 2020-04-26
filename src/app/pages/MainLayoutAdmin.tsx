@@ -1,26 +1,28 @@
 import React from 'react';
 import { Table, Tabs } from 'antd';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import LogoutButton from 'common/components/LogoutButton';
 import { ERoutes } from 'app/App';
 import { communicationApplication, IApplicationConnectedProps } from 'entities/Application/Application.communication';
-import { EWorkspaceStatus } from 'entities/Application/Application.models';
+import { EAdminTabs } from 'entities/Application/Application.models';
 
 type AllProps = IApplicationConnectedProps & RouteComponentProps;
 
 class MainLayoutAdminComponent extends React.Component<AllProps> {
   componentDidMount(): void {
-    const activeTab = new URL(window.location.href).searchParams.get('tab') || EWorkspaceStatus.Pending;
+    const activeTab = new URL(window.location.href).searchParams.get('tab') || EAdminTabs.Applications;
 
     this.onSwitchTab(activeTab);
   }
 
   render() {
-    const { workspacesCollection } = this.props;
-    const { data, loading } = workspacesCollection;
-    const workspaceCollection = data?.data;
+    const { workspacesAppCollection, workspacesWsCollection } = this.props;
+    const { data: apps, loading: appsLoading } = workspacesAppCollection;
+    const { data: ws, loading: wsLoading } = workspacesWsCollection;
+    const appsCollection = apps?.data;
+    const wsCollection = ws?.data;
 
-    const activeTab = new URL(window.location.href).searchParams.get('tab') || EWorkspaceStatus.Pending;
+    const activeTab = new URL(window.location.href).searchParams.get('tab') || EAdminTabs.Applications;
 
     const appColumns = [
       {
@@ -34,7 +36,7 @@ class MainLayoutAdminComponent extends React.Component<AllProps> {
       {
         title: '',
         render: record => (
-          <div onClick={() => this.goToAppItem(record)} className="pointer">
+          <div onClick={() => this.goToAppItem(record)} className="link-to-item">
             View
           </div>
         )
@@ -68,25 +70,25 @@ class MainLayoutAdminComponent extends React.Component<AllProps> {
         <LogoutButton />
 
         <Tabs defaultActiveKey={activeTab} onChange={this.onSwitchTab} className="app-table">
-          <Tabs.TabPane tab="Applications" key={EWorkspaceStatus.Pending}>
+          <Tabs.TabPane tab="Applications" key={EAdminTabs.Applications}>
             <Table
               className="app-table"
               columns={appColumns}
-              dataSource={workspaceCollection}
+              dataSource={appsCollection}
               rowKey={'id'}
               pagination={false}
-              loading={loading}
+              loading={appsLoading}
               bordered
             />
           </Tabs.TabPane>
-          <Tabs.TabPane tab="Workspaces" key={EWorkspaceStatus.Enabled}>
+          <Tabs.TabPane tab="Workspaces" key={EAdminTabs.Workspaces}>
             <Table
               className="app-table"
               columns={wsColumns}
-              dataSource={workspaceCollection}
+              dataSource={wsCollection}
               rowKey={'id'}
               pagination={false}
-              loading={loading}
+              loading={wsLoading}
               bordered
             />
           </Tabs.TabPane>
@@ -102,10 +104,17 @@ class MainLayoutAdminComponent extends React.Component<AllProps> {
   };
 
   onSwitchTab = (activeKey: string) => {
-    const { getWorkspacesCollection, history } = this.props;
+    const { getWorkspacesAppCollection, getWorkspacesWsCollection, history } = this.props;
     history.push({ search: `?tab=${activeKey}` });
 
-    getWorkspacesCollection({ status: activeKey });
+    switch (activeKey) {
+      case EAdminTabs.Applications:
+        getWorkspacesAppCollection({});
+        break;
+      case EAdminTabs.Workspaces:
+        getWorkspacesWsCollection({});
+        break;
+    }
   };
 }
 
