@@ -22,11 +22,11 @@ export interface IApplicationConnectedProps {
   clearWorkspacesModel(): void;
 }
 
-const collectionApiProvider = [new APIProvider(actionsTypes.get, applicationTransport.getWorkspaces)];
+const collectionApiProvider = [new APIProvider(actionsTypes.get, applicationTransport.getApplications)];
 const modelApiProvider = [
-  new APIProvider(actionsTypes.add, applicationTransport.addWorkspace),
-  new APIProvider(actionsTypes.get, applicationTransport.getWorkspace),
-  new APIProvider(actionsTypes.update, applicationTransport.updateWorkspace, {
+  new APIProvider(actionsTypes.add, applicationTransport.addApplication),
+  new APIProvider(actionsTypes.get, applicationTransport.getApplication),
+  new APIProvider(actionsTypes.update, applicationTransport.updateApplication, {
     postSuccessHook: function*() {
       yield put(push('/'));
     }
