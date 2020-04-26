@@ -1,5 +1,5 @@
 import { actionsTypes, APIProvider, BaseStrategy, Branch, buildCommunication, StoreBranch } from '@axmit/redux-communications';
-import { push } from 'connected-react-router';
+import { goBack } from 'connected-react-router';
 import { put } from 'redux-saga/effects';
 import {
   IWorkspaceModelTo,
@@ -37,9 +37,13 @@ const appModelApiProvider = [
   new APIProvider(actionsTypes.add, applicationTransport.addApplication),
   new APIProvider(actionsTypes.get, applicationTransport.getApplication),
   new APIProvider(actionsTypes.update, applicationTransport.updateApplication, {
+    postFailHook: function*() {
+      message.error('Error!', 3);
+      yield put(goBack());
+    },
     postSuccessHook: function*() {
       message.success('Success!', 3);
-      yield put(push('/'));
+      yield put(goBack());
     }
   })
 ];
@@ -47,9 +51,13 @@ const appModelApiProvider = [
 const wsModelApiProvider = [
   new APIProvider(actionsTypes.get, workspaceTransport.getWorkspace),
   new APIProvider(actionsTypes.update, workspaceTransport.updateWorkspace, {
+    postFailHook: function*() {
+      message.error('Error!', 3);
+      yield put(goBack());
+    },
     postSuccessHook: function*() {
       message.success('Success!', 3);
-      yield put(push('/'));
+      yield put(goBack());
     }
   })
 ];
