@@ -45,7 +45,11 @@ class MainLayoutAdminComponent extends React.Component<AllProps> {
 
     const wsColumns = [
       {
-        title: 'Workspace',
+        title: 'Organization',
+        dataIndex: 'workspace.name'
+      },
+      {
+        title: 'Subdomain',
         dataIndex: 'workspace.domain'
       },
       {
