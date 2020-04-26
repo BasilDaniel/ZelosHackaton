@@ -4,7 +4,8 @@ export enum EEntityStatus {
   Enabled = 'enabled',
   Disabled = 'disabled',
   Pending = 'pending',
-  Approved = 'approved'
+  Approved = 'approved',
+  Rejected = 'rejected'
 }
 export enum EAdminTabs {
   Applications = 'applications',

@@ -98,7 +98,7 @@ class UpdateAppModalComponent extends React.Component<AllProps, IComponentState>
             loading={loading}
             disabled={loading}
           >
-            Reject
+            Approve
           </Button>
         );
       default:
@@ -115,7 +115,8 @@ class UpdateAppModalComponent extends React.Component<AllProps, IComponentState>
     const id = workspacesWsModel.data?.id;
 
     if (id) {
-      modalAction !== EAppActionTypes.Reject && updateWorkspacesWsModel({ id, action: modalAction });
+      debugger
+      updateWorkspacesWsModel({ id, action: modalAction });
     }
   };
 
@@ -125,7 +126,8 @@ class UpdateAppModalComponent extends React.Component<AllProps, IComponentState>
     const id = workspacesAppModel.data?.id;
 
     if (id) {
-      modalAction !== EAppActionTypes.Reject && updateWorkspacesAppModel({ id, action: modalAction, note: text });
+      debugger
+      updateWorkspacesAppModel({ id, action: modalAction, note: text });
     }
   };
 }

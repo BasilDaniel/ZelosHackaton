@@ -9,6 +9,7 @@ import {
   IWorkspaceCollectionParams
 } from './Application.models';
 import { applicationTransport, workspaceTransport } from './Application.transport';
+import { message } from 'antd';
 
 const namespace = 'workspaces';
 
@@ -37,6 +38,7 @@ const appModelApiProvider = [
   new APIProvider(actionsTypes.get, applicationTransport.getApplication),
   new APIProvider(actionsTypes.update, applicationTransport.updateApplication, {
     postSuccessHook: function*() {
+      message.success('Success!', 3);
       yield put(push('/'));
     }
   })
@@ -46,6 +48,7 @@ const wsModelApiProvider = [
   new APIProvider(actionsTypes.get, workspaceTransport.getWorkspace),
   new APIProvider(actionsTypes.update, workspaceTransport.updateWorkspace, {
     postSuccessHook: function*() {
+      message.success('Success!', 3);
       yield put(push('/'));
     }
   })
