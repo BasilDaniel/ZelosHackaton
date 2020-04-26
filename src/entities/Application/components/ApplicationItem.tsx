@@ -8,7 +8,7 @@ import { UpdateAppModal } from 'entities/Application/components/UpdateAppModal';
 import { communicationApplication, IApplicationConnectedProps } from 'entities/Application/Application.communication';
 import { EAppActionTypes } from 'entities/Auth/Auth.models';
 import NotFound from 'entities/Auth/components/NotFound';
-import { EEntityType, EWorkspaceStatus } from 'entities/Application/Application.models';
+import { EEntityType, EEntityStatus } from 'entities/Application/Application.models';
 
 interface IComponentState {
   modalVisible: boolean;
@@ -51,14 +51,14 @@ class ApplicationItemComponent extends React.Component<AllProps, IComponentState
       return loading ? <Spiner size="large" align="hover" /> : <NotFound />;
     }
 
-    const application = entityData.application;
+    const entity = entityData.application;
 
-    if (!application) {
+    if (!entity) {
       return null;
     }
 
     const { workspace, status } = entityData;
-    const { organization, country, name, phone, email, details, website } = application;
+    const { organization, country, name, phone, email, details, website } = entity;
     const { domain } = workspace;
 
     const cardTitle = (
@@ -96,20 +96,20 @@ class ApplicationItemComponent extends React.Component<AllProps, IComponentState
     );
   }
 
-  getButtons = (status: EWorkspaceStatus) => {
+  getButtons = (status: EEntityStatus) => {
     switch (status) {
-      case EWorkspaceStatus.Pending:
+      case EEntityStatus.Pending:
         return (
           <ButtonWrapper align="right">
             <Button type="danger" onClick={() => this.showModal('Confirm rejecting', EAppActionTypes.Reject)}>
               Reject
             </Button>
-            <Button type="primary" onClick={() => this.showModal('Create a workspace?', EAppActionTypes.Enable)}>
+            <Button type="primary" onClick={() => this.showModal('Create a workspace?', EAppActionTypes.Approve)}>
               Approve
             </Button>
           </ButtonWrapper>
         );
-      case EWorkspaceStatus.Enabled:
+      case EEntityStatus.Enabled:
         return (
           <ButtonWrapper align="right">
             <Button type="danger" onClick={() => this.showModal('Disable workspace?', EAppActionTypes.Disable)}>
@@ -117,7 +117,7 @@ class ApplicationItemComponent extends React.Component<AllProps, IComponentState
             </Button>
           </ButtonWrapper>
         );
-      case EWorkspaceStatus.Disabled:
+      case EEntityStatus.Disabled:
         return (
           <ButtonWrapper align="right">
             <Button type="primary" onClick={() => this.showModal('Enable workspace?', EAppActionTypes.Enable)}>
@@ -125,6 +125,9 @@ class ApplicationItemComponent extends React.Component<AllProps, IComponentState
             </Button>
           </ButtonWrapper>
         );
+      case EEntityStatus.Approved:
+      default:
+        return <></>;
     }
   };
 

@@ -4,7 +4,7 @@ import { RouteComponentProps, withRouter } from 'react-router-dom';
 import LogoutButton from 'common/components/LogoutButton';
 import { ERoutes } from 'app/App';
 import { communicationApplication, IApplicationConnectedProps } from 'entities/Application/Application.communication';
-import { EAdminTabs, EEntityType } from 'entities/Application/Application.models';
+import { EAdminTabs, EEntityStatus, EEntityType } from 'entities/Application/Application.models';
 
 type AllProps = IApplicationConnectedProps & RouteComponentProps;
 
@@ -109,7 +109,7 @@ class MainLayoutAdminComponent extends React.Component<AllProps> {
 
     switch (activeKey) {
       case EAdminTabs.Applications:
-        getWorkspacesAppCollection({});
+        getWorkspacesAppCollection({ status: EEntityStatus.Pending });
         break;
       case EAdminTabs.Workspaces:
         getWorkspacesWsCollection({});
