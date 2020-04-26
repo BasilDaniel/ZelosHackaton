@@ -39,6 +39,12 @@ class ApplicationItemComponent extends React.Component<AllProps, IComponentState
     }
   }
 
+  componentWillUnmount(): void {
+    const { clearWorkspacesAppModel, clearWorkspacesWsModel } = this.props;
+    clearWorkspacesAppModel();
+    clearWorkspacesWsModel();
+  }
+
   render() {
     const { modalVisible, modalTitle, modalAction } = this.state;
     const { workspacesAppModel, workspacesWsModel } = this.props;
@@ -93,7 +99,7 @@ class ApplicationItemComponent extends React.Component<AllProps, IComponentState
             {this.getButtons(status)}
           </Card>
         </Row>
-        <UpdateAppModal title={modalTitle} modalAction={modalAction} modalVisible={modalVisible} onCancel={this.cancel} />
+        <UpdateAppModal title={modalTitle} modalAction={modalAction} modalVisible={modalVisible} onCancel={this.cancel} loading={loading}/>
       </>
     );
   }
@@ -101,14 +107,24 @@ class ApplicationItemComponent extends React.Component<AllProps, IComponentState
   getButtons = (status: EEntityStatus) => {
     switch (status) {
       case EEntityStatus.Pending:
+        const type = new URL(window.location.href).searchParams.get('type');
+
         return (
           <ButtonWrapper align="right">
-            <Button type="danger" onClick={() => this.showModal('Confirm rejecting', EAppActionTypes.Reject)}>
-              Reject
-            </Button>
-            <Button type="primary" onClick={() => this.showModal('Create a workspace?', EAppActionTypes.Approve)}>
-              Approve
-            </Button>
+            {type === EEntityType.Application ? (
+              <>
+                <Button type="danger" onClick={() => this.showModal('Confirm rejecting', EAppActionTypes.Reject)}>
+                  Reject
+                </Button>
+                <Button type="primary" onClick={() => this.showModal('Create a workspace?', EAppActionTypes.Approve)}>
+                  Approve
+                </Button>
+              </>
+            ) : (
+              <Button type="primary" onClick={() => this.showModal('Enable workspace?', EAppActionTypes.Enable)}>
+                Enable
+              </Button>
+            )}
           </ButtonWrapper>
         );
       case EEntityStatus.Enabled:

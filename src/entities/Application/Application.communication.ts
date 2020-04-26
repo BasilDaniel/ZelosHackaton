@@ -1,5 +1,5 @@
 import { actionsTypes, APIProvider, BaseStrategy, Branch, buildCommunication, StoreBranch } from '@axmit/redux-communications';
-import { push } from 'connected-react-router';
+import { goBack } from 'connected-react-router';
 import { put } from 'redux-saga/effects';
 import {
   IWorkspaceModelTo,
@@ -9,6 +9,7 @@ import {
   IWorkspaceCollectionParams
 } from './Application.models';
 import { applicationTransport, workspaceTransport } from './Application.transport';
+import { message } from 'antd';
 
 const namespace = 'workspaces';
 
@@ -30,16 +31,48 @@ export interface IApplicationConnectedProps {
   clearWorkspacesWsModel(): void;
 }
 
-const appCollectionApiProvider = [new APIProvider(actionsTypes.get, applicationTransport.getApplications)];
+const appCollectionApiProvider = [
+  new APIProvider(actionsTypes.get, applicationTransport.getApplications, {
+    preRequestDataMapper: function(
+      response: IWorkspaceCollection | null,
+      payload: IWorkspaceCollectionParams,
+      branchState: StoreBranch<IWorkspaceCollection, IWorkspaceCollectionParams>
+    ) {
+      return branchState.data;
+    }
+  })
+];
 
-const wsCollectionApiProvider = [new APIProvider(actionsTypes.get, workspaceTransport.getWorkspaces)];
+const wsCollectionApiProvider = [
+  new APIProvider(actionsTypes.get, workspaceTransport.getWorkspaces, {
+    preRequestDataMapper: function(
+      response: IWorkspaceCollection | null,
+      payload: IWorkspaceCollectionParams,
+      branchState: StoreBranch<IWorkspaceCollection, IWorkspaceCollectionParams>
+    ) {
+      return branchState.data;
+    }
+  })
+];
 
 const appModelApiProvider = [
   new APIProvider(actionsTypes.add, applicationTransport.addApplication),
   new APIProvider(actionsTypes.get, applicationTransport.getApplication),
   new APIProvider(actionsTypes.update, applicationTransport.updateApplication, {
+    preRequestDataMapper: function(
+      response: IWorkspaceModelFrom | null,
+      payload: IUpdateWorkspaceModelTo,
+      branchState: StoreBranch<IWorkspaceModelFrom, IUpdateWorkspaceModelTo>
+    ) {
+      return branchState.data;
+    },
+    postFailHook: function*() {
+      message.error('Error!', 3);
+      yield put(goBack());
+    },
     postSuccessHook: function*() {
-      yield put(push('/'));
+      message.success('Success!', 3);
+      yield put(goBack());
     }
   })
 ];
@@ -48,8 +81,20 @@ const appWsZModelApiProvider = [new APIProvider(actionsTypes.add, applicationTra
 const wsModelApiProvider = [
   new APIProvider(actionsTypes.get, workspaceTransport.getWorkspace),
   new APIProvider(actionsTypes.update, workspaceTransport.updateWorkspace, {
+    preRequestDataMapper: function(
+      response: IWorkspaceModelFrom | null,
+      payload: IUpdateWorkspaceModelTo,
+      branchState: StoreBranch<IWorkspaceModelFrom, IUpdateWorkspaceModelTo>
+    ) {
+      return branchState.data;
+    },
+    postFailHook: function*() {
+      message.error('Error!', 3);
+      yield put(goBack());
+    },
     postSuccessHook: function*() {
-      yield put(push('/'));
+      message.success('Success!', 3);
+      yield put(goBack());
     }
   })
 ];
