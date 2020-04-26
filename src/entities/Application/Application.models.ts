@@ -1,12 +1,10 @@
-export enum EWorkspaceStatus {
+import { EAppActionTypes } from 'entities/Auth/Auth.models';
+
+export enum EEntityStatus {
   Enabled = 'enabled',
   Disabled = 'disabled',
-  Pending = 'pending'
-}
-export enum EAppStatus {
-  Approved = 'enabled',
-  Rejected = 'disabled',
-  Pending = 'pending'
+  Pending = 'pending',
+  Approved = 'approved'
 }
 export enum EAdminTabs {
   Applications = 'applications',
@@ -42,7 +40,7 @@ export interface IWorkspaceModelTo {
 }
 export interface IWorkspaceModelFrom {
   id: string;
-  status: EWorkspaceStatus;
+  status: EEntityStatus;
   application: IApplication;
   workspace: IWorkspace;
 }
@@ -53,7 +51,7 @@ export interface IWorkspaceValues extends IApplication, IWorkspace, IZelos {
 
 export interface IUpdateWorkspaceModelTo {
   id: string;
-  action: 'enable' | 'disable';
+  action: EAppActionTypes;
   note?: string;
 }
 

@@ -28,7 +28,7 @@ class UpdateAppModalComponent extends React.Component<AllProps, IComponentState>
   render() {
     const { onCancel, modalVisible, workspacesAppModel, title, modalAction } = this.props;
     const { loading } = workspacesAppModel;
-    const reject = modalAction === EAppActionTypes.Disable;
+    const reject = modalAction === EAppActionTypes.Reject;
 
     return (
       <Modal title={title} visible={modalVisible} footer={null} onCancel={onCancel} closable={false} className="update-app-modal">
@@ -80,9 +80,21 @@ class UpdateAppModalComponent extends React.Component<AllProps, IComponentState>
       case EAppActionTypes.Reject:
         return (
           <Button
-            type="primary"
+            type="danger"
             htmlType="submit"
             onClick={() => this.updateApp(EAppActionTypes.Reject)}
+            loading={loading}
+            disabled={loading}
+          >
+            Reject
+          </Button>
+        );
+      case EAppActionTypes.Approve:
+        return (
+          <Button
+            type="primary"
+            htmlType="submit"
+            onClick={() => this.updateApp(EAppActionTypes.Approve)}
             loading={loading}
             disabled={loading}
           >
