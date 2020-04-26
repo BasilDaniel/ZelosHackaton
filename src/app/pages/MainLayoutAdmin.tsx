@@ -4,7 +4,7 @@ import { RouteComponentProps, withRouter } from 'react-router-dom';
 import LogoutButton from 'common/components/LogoutButton';
 import { ERoutes } from 'app/App';
 import { communicationApplication, IApplicationConnectedProps } from 'entities/Application/Application.communication';
-import { EAdminTabs } from 'entities/Application/Application.models';
+import { EAdminTabs, EEntityType } from 'entities/Application/Application.models';
 
 type AllProps = IApplicationConnectedProps & RouteComponentProps;
 
@@ -36,7 +36,7 @@ class MainLayoutAdminComponent extends React.Component<AllProps> {
       {
         title: '',
         render: record => (
-          <div onClick={() => this.goToAppItem(record)} className="link-to-item">
+          <div onClick={() => this.goToAppItem(record, EEntityType.Application)} className="link-to-item">
             View
           </div>
         )
@@ -58,7 +58,7 @@ class MainLayoutAdminComponent extends React.Component<AllProps> {
       {
         title: '',
         render: record => (
-          <div onClick={() => this.goToAppItem(record)} className="link-to-item">
+          <div onClick={() => this.goToAppItem(record, EEntityType.Workspace)} className="link-to-item">
             View
           </div>
         )
@@ -97,10 +97,10 @@ class MainLayoutAdminComponent extends React.Component<AllProps> {
     );
   }
 
-  goToAppItem = record => {
+  goToAppItem = (record, type: string) => {
     const { history } = this.props;
 
-    history.push(`${ERoutes.Application}/${record.id}`);
+    history.push(`${ERoutes.Application}/${record.id}?type=${type}`);
   };
 
   onSwitchTab = (activeKey: string) => {

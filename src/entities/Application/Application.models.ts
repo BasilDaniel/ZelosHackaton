@@ -12,6 +12,10 @@ export enum EAdminTabs {
   Applications = 'applications',
   Workspaces = 'workspaces'
 }
+export enum EEntityType {
+  Application = 'application',
+  Workspace = 'workspace'
+}
 export interface IApplication {
   organization: string;
   country: string;

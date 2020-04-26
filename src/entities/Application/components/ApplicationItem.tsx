@@ -8,7 +8,7 @@ import { UpdateAppModal } from 'entities/Application/components/UpdateAppModal';
 import { communicationApplication, IApplicationConnectedProps } from 'entities/Application/Application.communication';
 import { EAppActionTypes } from 'entities/Auth/Auth.models';
 import NotFound from 'entities/Auth/components/NotFound';
-import { EWorkspaceStatus } from 'entities/Application/Application.models';
+import { EEntityType, EWorkspaceStatus } from 'entities/Application/Application.models';
 
 interface IComponentState {
   modalVisible: boolean;
@@ -26,28 +26,38 @@ class ApplicationItemComponent extends React.Component<AllProps, IComponentState
   };
 
   componentDidMount(): void {
-    const { match, getWorkspacesModel } = this.props;
+    const { match, getWorkspacesAppModel, getWorkspacesWsModel } = this.props;
     const id = match.params.id;
 
-    getWorkspacesModel(id);
+    const type = new URL(window.location.href).searchParams.get('type');
+
+    if (type === EEntityType.Application) {
+      getWorkspacesAppModel(id);
+    }
+    if (type === EEntityType.Workspace) {
+      getWorkspacesWsModel(id);
+    }
   }
 
   render() {
     const { modalVisible, modalTitle, modalAction } = this.state;
-    const { workspacesModel } = this.props;
-    const { data: workspaceData, loading } = workspacesModel;
+    const { workspacesAppModel, workspacesWsModel } = this.props;
 
-    if (!workspaceData) {
+    const type = new URL(window.location.href).searchParams.get('type');
+
+    const { data: entityData, loading } = type === EEntityType.Application ? workspacesAppModel : workspacesWsModel;
+
+    if (!entityData) {
       return loading ? <Spiner size="large" align="hover" /> : <NotFound />;
     }
 
-    const application = workspaceData.application;
+    const application = entityData.application;
 
     if (!application) {
       return null;
     }
 
-    const { workspace, status } = workspaceData;
+    const { workspace, status } = entityData;
     const { organization, country, name, phone, email, details, website } = application;
     const { domain } = workspace;
 

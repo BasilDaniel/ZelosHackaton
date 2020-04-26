@@ -26,8 +26,8 @@ class UpdateAppModalComponent extends React.Component<AllProps, IComponentState>
   };
 
   render() {
-    const { onCancel, modalVisible, workspacesModel, title, modalAction } = this.props;
-    const { loading } = workspacesModel;
+    const { onCancel, modalVisible, workspacesAppModel, title, modalAction } = this.props;
+    const { loading } = workspacesAppModel;
     const reject = modalAction === EAppActionTypes.Disable;
 
     return (
@@ -49,8 +49,8 @@ class UpdateAppModalComponent extends React.Component<AllProps, IComponentState>
   }
 
   getActionButton = () => {
-    const { workspacesModel, modalAction } = this.props;
-    const { loading } = workspacesModel;
+    const { workspacesAppModel, modalAction } = this.props;
+    const { loading } = workspacesAppModel;
 
     switch (modalAction) {
       case EAppActionTypes.Enable:
@@ -99,21 +99,21 @@ class UpdateAppModalComponent extends React.Component<AllProps, IComponentState>
   };
 
   updateWorkspace = (modalAction: EAppActionTypes) => {
-    const { workspacesModel, updateWorkspacesModel } = this.props;
-    const id = workspacesModel.data?.id;
+    const { workspacesWsModel, updateWorkspacesWsModel } = this.props;
+    const id = workspacesWsModel.data?.id;
 
     if (id) {
-      modalAction !== EAppActionTypes.Reject && updateWorkspacesModel({ id, action: modalAction });
+      modalAction !== EAppActionTypes.Reject && updateWorkspacesWsModel({ id, action: modalAction });
     }
   };
 
   updateApp = (modalAction: EAppActionTypes) => {
     const { text } = this.state;
-    const { workspacesModel, updateWorkspacesModel } = this.props;
-    const id = workspacesModel.data?.id;
+    const { workspacesAppModel, updateWorkspacesAppModel } = this.props;
+    const id = workspacesAppModel.data?.id;
 
     if (id) {
-      modalAction !== EAppActionTypes.Reject && updateWorkspacesModel({ id, action: modalAction, note: text });
+      modalAction !== EAppActionTypes.Reject && updateWorkspacesAppModel({ id, action: modalAction, note: text });
     }
   };
 }

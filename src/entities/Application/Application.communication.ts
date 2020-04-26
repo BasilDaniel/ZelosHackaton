@@ -13,29 +13,36 @@ import { applicationTransport, workspaceTransport } from './Application.transpor
 const namespace = 'workspaces';
 
 export interface IApplicationConnectedProps {
-  workspacesModel: StoreBranch<IWorkspaceModelFrom, IWorkspaceModelTo, any>;
+  workspacesAppModel: StoreBranch<IWorkspaceModelFrom, IWorkspaceModelTo, any>;
+  workspacesWsModel: StoreBranch<IWorkspaceModelFrom, IWorkspaceModelTo, any>;
   workspacesAppCollection: StoreBranch<IWorkspaceCollection>;
   workspacesWsCollection: StoreBranch<IWorkspaceCollection>;
   addWorkspacesModel(model: IWorkspaceModelTo): void;
-  getWorkspacesModel(id: string): void;
+  getWorkspacesAppModel(id: string): void;
+  getWorkspacesWsModel(id: string): void;
   getWorkspacesAppCollection(params: IWorkspaceCollectionParams): void;
   getWorkspacesWsCollection(params: IWorkspaceCollectionParams): void;
-  updateWorkspacesModel(params: IUpdateWorkspaceModelTo): void;
-  clearWorkspacesModel(): void;
+  updateWorkspacesAppModel(params: IUpdateWorkspaceModelTo): void;
+  updateWorkspacesWsModel(params: IUpdateWorkspaceModelTo): void;
+  clearWorkspacesAppModel(): void;
+  clearWorkspacesWsModel(): void;
 }
 
 const appCollectionApiProvider = [new APIProvider(actionsTypes.get, applicationTransport.getApplications)];
 
 const wsCollectionApiProvider = [new APIProvider(actionsTypes.get, workspaceTransport.getWorkspaces)];
 
-const modelApiProvider = [
+const appModelApiProvider = [
   new APIProvider(actionsTypes.add, applicationTransport.addApplication),
   new APIProvider(actionsTypes.get, applicationTransport.getApplication),
   new APIProvider(actionsTypes.update, applicationTransport.updateApplication, {
     postSuccessHook: function*() {
       yield put(push('/'));
     }
-  }),
+  })
+];
+
+const wsModelApiProvider = [
   new APIProvider(actionsTypes.get, workspaceTransport.getWorkspace),
   new APIProvider(actionsTypes.update, workspaceTransport.updateWorkspace, {
     postSuccessHook: function*() {
@@ -45,7 +52,8 @@ const modelApiProvider = [
 ];
 
 const branches = [
-  new Branch('model', modelApiProvider),
+  new Branch('appModel', appModelApiProvider),
+  new Branch('wsModel', wsModelApiProvider),
   new Branch('appCollection', appCollectionApiProvider),
   new Branch('wsCollection', wsCollectionApiProvider)
 ];

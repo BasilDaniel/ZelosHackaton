@@ -17,12 +17,12 @@ type AllProps = FormComponentProps & IApplicationConnectedProps & RouteComponent
 
 class ApplicationPage extends React.Component<AllProps> {
   componentDidMount() {
-    const { clearWorkspacesModel } = this.props;
-    clearWorkspacesModel();
+    const { clearWorkspacesAppModel } = this.props;
+    clearWorkspacesAppModel();
   }
   render() {
-    const { form, workspacesModel } = this.props;
-    const { data, loading, errors } = workspacesModel;
+    const { form, workspacesAppModel } = this.props;
+    const { data, loading, errors } = workspacesAppModel;
     let isNextStep = false;
     if (errors && errors.data && errors.data.errors) {
       isNextStep = !errors.data.errors.some(item => item.param === 'application');
@@ -74,8 +74,8 @@ class ApplicationPage extends React.Component<AllProps> {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { form, addWorkspacesModel, workspacesModel } = this.props;
-    const { params } = workspacesModel;
+    const { form, addWorkspacesModel, workspacesAppModel } = this.props;
+    const { params } = workspacesAppModel;
 
     form.validateFieldsAndScroll((err, values: IWorkspaceValues) => {
       if (!err) {
@@ -98,8 +98,8 @@ export default communicationApplication.injector(
   withRouter(
     Form.create({
       mapPropsToFields(props: AllProps) {
-        const { workspacesModel } = props;
-        const { params, errors } = workspacesModel;
+        const { workspacesAppModel } = props;
+        const { params, errors } = workspacesAppModel;
         const data = errors && errors.data;
         let value = {};
         if (params) {
