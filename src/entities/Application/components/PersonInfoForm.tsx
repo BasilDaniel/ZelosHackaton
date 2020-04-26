@@ -4,7 +4,7 @@ import TextArea from 'antd/lib/input/TextArea';
 import FormInput from 'common/components/Form/FormInput';
 import { urlValidate } from 'common/helpers/validation.helper';
 import FormSelect from 'common/components/Form/FormSelect';
-import { countryList } from './Countries';
+import { countryList } from 'entities/Application/components/Countries';
 
 interface IComponentProps {
   form: WrappedFormUtils;
@@ -14,6 +14,7 @@ export const PersonInfoForm: FC<IComponentProps> = props => {
   const { form } = props;
   return (
     <>
+      <h2>Please tell us about yourself</h2>
       <FormInput form={form} decoratorName="organization" label="What is your organisation called?" required />
       <FormInput form={form} decoratorName="country" label="Where are you located?" required>
         <FormSelect selectOptions={countryList} showSearch></FormSelect>

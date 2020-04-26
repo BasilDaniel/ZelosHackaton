@@ -1,3 +1,8 @@
+export enum EWorkspaceStatus {
+  Enabled = 'enabled',
+  Disabled = 'disabled',
+  Pending = 'pending'
+}
 export interface IApplication {
   organization: string;
   country: string;
@@ -9,11 +14,11 @@ export interface IApplication {
 }
 export interface IWorkspace {
   domain: string;
-  name: string;
+  workspaceName: string;
 }
 export interface IZelos {
   subdomain: string;
-  email: string;
+  zelosEmail: string;
   password: string;
 }
 
@@ -24,7 +29,29 @@ export interface IWorkspaceModelTo {
 }
 export interface IWorkspaceModelFrom {
   id: string;
+  status: EWorkspaceStatus;
   application: IApplication;
   workspace: IWorkspace;
 }
 export interface IWorkspaceValues extends IApplication, IWorkspace, IZelos {}
+
+export interface IUpdateWorkspaceModelTo {
+  id: string;
+  action: 'enable' | 'disable';
+  note?: string;
+}
+
+export interface IWorkspaceCollectionParams {
+  offset?: number;
+  limit?: number;
+  status: string;
+}
+
+export interface IWorkspaceMeta {
+  count: number;
+}
+
+export interface IWorkspaceCollection {
+  data: IWorkspaceModelFrom[];
+  meta: IWorkspaceMeta;
+}

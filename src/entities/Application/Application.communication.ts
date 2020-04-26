@@ -1,18 +1,39 @@
 import { actionsTypes, APIProvider, BaseStrategy, Branch, buildCommunication, StoreBranch } from '@axmit/redux-communications';
-import { IWorkspaceModelTo, IWorkspaceModelFrom } from './Application.models';
+import { push } from 'connected-react-router';
+import { put } from 'redux-saga/effects';
+import {
+  IWorkspaceModelTo,
+  IWorkspaceModelFrom,
+  IUpdateWorkspaceModelTo,
+  IWorkspaceCollection,
+  IWorkspaceCollectionParams
+} from './Application.models';
 import { applicationTransport } from './Application.transport';
 
 const namespace = 'workspaces';
 
 export interface IApplicationConnectedProps {
   workspacesModel: StoreBranch<IWorkspaceModelFrom, IWorkspaceModelTo, any>;
+  workspacesCollection: StoreBranch<IWorkspaceCollection>;
   addWorkspacesModel(model: IWorkspaceModelTo): void;
+  getWorkspacesModel(id: string): void;
+  getWorkspacesCollection(params: IWorkspaceCollectionParams): void;
+  updateWorkspacesModel(params: IUpdateWorkspaceModelTo): void;
   clearWorkspacesModel(): void;
 }
 
-const modelApiProvider = [new APIProvider(actionsTypes.add, applicationTransport.addWorkspace)];
+const collectionApiProvider = [new APIProvider(actionsTypes.get, applicationTransport.getApplications)];
+const modelApiProvider = [
+  new APIProvider(actionsTypes.add, applicationTransport.addApplication),
+  new APIProvider(actionsTypes.get, applicationTransport.getApplication),
+  new APIProvider(actionsTypes.update, applicationTransport.updateApplication, {
+    postSuccessHook: function*() {
+      yield put(push('/'));
+    }
+  })
+];
 
-const branches = [new Branch('model', modelApiProvider)];
+const branches = [new Branch('model', modelApiProvider), new Branch('collection', collectionApiProvider)];
 
 const strategy = new BaseStrategy({
   namespace,

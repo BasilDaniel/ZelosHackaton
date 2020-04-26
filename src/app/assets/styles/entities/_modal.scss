@@ -1,0 +1,8 @@
+@import '../abstract/variables';
+
+.update-app-modal {
+  & .ant-modal-title {
+    font-size: $font-sizer-250;
+    font-weight: bold;
+  }
+}

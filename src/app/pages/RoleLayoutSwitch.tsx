@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Spiner } from 'common/components/Spiner';
-import MainLayoutAdmin from 'app/pages/MainLayoutAdmin';
+import { MainLayoutAdmin } from 'app/pages/MainLayoutAdmin';
 import { LandingPage } from 'app/pages/LandingPage';
 import { IAuthConnectedProps, communicationAuth } from 'entities/Auth/Auth.communication';
 

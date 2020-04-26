@@ -1,4 +1,4 @@
-@import 'abstract/variables';
+@import '../abstract/variables';
 
 .spiner {
   &_center {
@@ -26,8 +26,5 @@
     display: block;
     position: relative;
     margin: 0 auto;
-    .ant-spin-dot-item {
-      background-color: green;
-    }
   }
 }

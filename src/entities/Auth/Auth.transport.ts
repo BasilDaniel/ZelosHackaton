@@ -6,7 +6,11 @@ const basePath = '/auth';
 
 export const authTransport = {
   initAuth: (): AxiosPromise<ITokenModel> => getCreds(),
-  addAuthModel: (data: ILoginModel): AxiosPromise<ITokenModel> => axios.post(`${basePath}`, data).then(r => r.data),
+  addAuthModel: (data: ILoginModel): AxiosPromise<ITokenModel> =>
+    axios.post(`${basePath}/login`, data).then(r => {
+      r.data.refresh = r.data.access;
+      return r.data;
+    }),
   deleteAuthModel: (): AxiosPromise<AxiosResponse<void>> => axios.delete(`${basePath}`),
   addRegistration: (params: ISignUpModel): AxiosPromise<void> => axios.post('/registration', params).then(r => r.data)
 };

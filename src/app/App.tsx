@@ -6,17 +6,26 @@ import { communicationAuth, IAuthConnectedProps } from 'entities/Auth/Auth.commu
 import Login from 'entities/Auth/components/Login';
 import NotFound from 'entities/Auth/components/NotFound';
 import RoleLayoutSwitch from './pages/RoleLayoutSwitch';
-import ApplicationPage from 'entities/Application/ApplicationPage';
-import { ApplicationItem } from 'entities/Application/ApplicationItem';
+import ApplicationPage from 'entities/Application/components/ApplicationPage';
+import { ApplicationItem } from 'entities/Application/components/ApplicationItem';
 
 export enum ERoutes {
   Login = 'login',
   ApplicationInfo = 'application-info',
   MoreInfo = 'more-info',
+  Application = 'application',
   ApplicationItem = 'application/:id'
 }
 
 class App extends React.Component<IAuthConnectedProps> {
+  constructor(props: IAuthConnectedProps) {
+    super(props);
+    const { authModel, initAuthModel } = this.props;
+    const { data } = authModel;
+    if (!data?.access) {
+      initAuthModel();
+    }
+  }
   render() {
     return (
       <UIErrorHandler>

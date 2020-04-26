@@ -39,3 +39,8 @@ export interface IErrorReturnData {
 export interface IAuthRegistrationModel extends IErrorReturnData {
   data: null;
 }
+
+export enum EAppActionTypes {
+  Enable = 'enable',
+  Disable = 'disable'
+}

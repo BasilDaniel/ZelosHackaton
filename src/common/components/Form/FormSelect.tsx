@@ -1,7 +1,6 @@
 import React from 'react';
 import { Select } from 'antd';
 import { SelectProps } from 'antd/lib/select';
-import Button from 'common/components/Button';
 
 interface IComponentProps extends SelectProps<string> {
   selectOptions: string[];
@@ -9,16 +8,14 @@ interface IComponentProps extends SelectProps<string> {
   loading?: boolean;
   showSearch?: boolean;
   onSearch?: (value: string) => void;
-  allowClear?: boolean;
   placeholder?: string;
 }
 
 class FormSelect extends React.Component<IComponentProps> {
   render() {
-    const { onChange, selectOptions, value, loading, showSearch, onSearch, defaultValue, allowClear, placeholder } = this.props;
+    const { onChange, selectOptions, value, loading, showSearch, onSearch, defaultValue, placeholder } = this.props;
     return (
       <div className="form-select">
-        {allowClear && value && <Button type="cross" HTMLType="button" />}
         <Select
           optionFilterProp="children"
           onChange={onChange}
