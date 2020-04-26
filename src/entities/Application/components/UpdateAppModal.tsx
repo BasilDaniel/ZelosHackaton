@@ -115,7 +115,6 @@ class UpdateAppModalComponent extends React.Component<AllProps, IComponentState>
     const id = workspacesWsModel.data?.id;
 
     if (id) {
-      debugger
       updateWorkspacesWsModel({ id, action: modalAction });
     }
   };
@@ -126,7 +125,6 @@ class UpdateAppModalComponent extends React.Component<AllProps, IComponentState>
     const id = workspacesAppModel.data?.id;
 
     if (id) {
-      debugger
       updateWorkspacesAppModel({ id, action: modalAction, note: text });
     }
   };
